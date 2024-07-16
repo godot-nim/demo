@@ -23,7 +23,7 @@ run `minister uninstall` enables to uninstall all above.
 
 ### 3. go to the directory that you interested in and run `nimble build`
 
-> **( ! ) Rquired for first time**
+> **( ! ) Required for first time**
 >
 > ### 4. setup godot's project files
 >
