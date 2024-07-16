@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux.debug.x86_64 = "res://lib/dodge_the_creeps_2d"
+linux.release.x86_64 = "res://lib/dodge_the_creeps_2d"
+windows.debug.x86_64 = "res://lib/dodge_the_creeps_2d"
+windows.release.x86_64 = "res://lib/dodge_the_creeps_2d"
