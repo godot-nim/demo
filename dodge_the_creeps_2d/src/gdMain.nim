@@ -40,7 +40,7 @@ proc new_game(self: Main) {.gdsync.} =
   play self.Music
   self.Hud.update_score(self.score)
   self.Hud.show_get_ready()
-  self.getTree.callGroup(stringname"mobs", stringname"queue_free")
+  self.getTree.callGroup("mobs", "queue_free")
 
 proc game_over(self: Main) {.gdsync.} =
   stop self.ScoreTimer

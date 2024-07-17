@@ -21,7 +21,7 @@ proc show_message*(self: Hud; text: String) {.gdsync.} =
   show self.Message
 
 proc update_score*(self: Hud; score: int) {.gdsync.} =
-  self.ScoreLabel.text = gdstring $score
+  self.ScoreLabel.text = $score
 
 proc show_get_ready*(self: Hud) {.gdsync.} =
   self.show_message "Get Ready"
