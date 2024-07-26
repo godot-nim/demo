@@ -11,7 +11,6 @@ type Mob* = ref object of RigidBody2D
 
 method ready(self: Mob) {.gdsync.} =
   if self.getTree.editedSceneRoot != nil: return
-  echo "Mob::ready"
   self.AnimatedSprite2D = self/"AnimatedSprite2D" as godot.AnimatedSprite2D
   self.VisibleOnScreenNotifier2D = self/"VisibleOnScreenNotifier2D" as godot.VisibleOnScreenNotifier2D
   discard self.VisibleOnScreenNotifier2D.connect("screen_exited", self.callable("_on_visible_on_screen_notifier_2d_screen_exited"))
