@@ -12,3 +12,7 @@ binDir        = "lib"
 # Dependencies
 
 requires "nim >= 2.0.0"
+
+requires "godotcore"
+requires "godotgen"
+requires "godot"
