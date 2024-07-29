@@ -1,9 +1,9 @@
 import gdext
 
-import gdPlayer
-import gdMob
-import gdHud
-import gdMain
+import extension/player
+import extension/mob
+import extension/hud
+import extension/main
 
 process initialize_scene:
   register Player

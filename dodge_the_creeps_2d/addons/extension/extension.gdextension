@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux.debug.x86_64 = "res://addons/extension/lib/extension"
+linux.release.x86_64 = "res://addons/extension/lib/extension"
+windows.debug.x86_64 = "res://addons/extension/lib/extension"
+windows.release.x86_64 = "res://addons/extension/lib/extension"
