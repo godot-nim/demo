@@ -2,9 +2,9 @@ import std/random
 
 import gdext
 
-import gdPlayer
-import gdMob
-import gdHud
+import player
+import mob
+import hud
 
 import gdextgen/classes/gdSceneTree
 import gdextgen/classes/gdNode

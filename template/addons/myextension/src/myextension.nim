@@ -1,6 +1,6 @@
 import gdext
 
-import myclass
+import myextension/myclass
 
 process initialize_scene:
   register MyClass

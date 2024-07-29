@@ -5,7 +5,7 @@ author        = "la .panon."
 description   = "A new awesome nimble package"
 license       = "MIT"
 srcDir        = "src"
-bin           = @["dodge_the_creeps_2d"]
+bin           = @["extension"]
 binDir        = "lib"
 
 
@@ -13,6 +13,6 @@ binDir        = "lib"
 
 requires "nim >= 2.0.0"
 
-requires "godotcore"
-requires "godotgen"
-requires "godot"
+requires "gdextcore"
+requires "gdextgen"
+requires "gdext"
