@@ -1,9 +1,9 @@
-import godot
-import godotgen/classes/gdArea2D
-import godotgen/classes/gdInput
-import godotgen/classes/gdSceneTree
-import godotgen/classes/gdAnimatedSprite2D
-import godotgen/classes/gdCollisionShape2D
+import gdext
+import gdextgen/classes/gdArea2D
+import gdextgen/classes/gdInput
+import gdextgen/classes/gdSceneTree
+import gdextgen/classes/gdAnimatedSprite2D
+import gdextgen/classes/gdCollisionShape2D
 
 var screen_size: Vector2
 
@@ -29,8 +29,8 @@ proc start*(self: Player; pos: Vector2) {.gdsync.} =
 method ready(self: Player) {.gdsync.} =
   if isRunningInEditor: return
   screen_size = self.getViewportRect().size
-  self.Input = /godot.Input
-  self.InputMap = /godot.InputMap
+  self.Input = /Input
+  self.InputMap = /InputMap
   self.AnimatedSprite2D = self/AnimatedSprite2D
   self.CollisionShape2D = self/CollisionShape2D
   discard self.connect("body_entered", self.callable("_on_body_entered"))

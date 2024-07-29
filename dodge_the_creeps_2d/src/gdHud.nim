@@ -1,9 +1,9 @@
-import godot
+import gdext
 
-import godotgen/classes/gdSceneTree
-import godotgen/classes/gdLabel
-# import godotgen/classes/gdButton
-import godotgen/classes/gdTimer
+import gdextgen/classes/gdSceneTree
+import gdextgen/classes/gdLabel
+# import gdextgen/classes/gdButton
+import gdextgen/classes/gdTimer
 
 type Hud* = ref object of CanvasLayer
   ScoreLabel*: Label

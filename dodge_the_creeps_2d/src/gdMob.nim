@@ -1,9 +1,9 @@
 import std/random
 
-import godot
-import godotgen/classes/gdAnimatedSprite2D
-import godotgen/classes/gdSpriteFrames
-import godotgen/classes/gdSceneTree
+import gdext
+import gdextgen/classes/gdAnimatedSprite2D
+import gdextgen/classes/gdSpriteFrames
+import gdextgen/classes/gdSceneTree
 
 type Mob* = ref object of RigidBody2D
   AnimatedSprite2D: AnimatedSprite2D
@@ -11,8 +11,8 @@ type Mob* = ref object of RigidBody2D
 
 method ready(self: Mob) {.gdsync.} =
   if isRunningInEditor: return
-  self.AnimatedSprite2D = self/"AnimatedSprite2D" as godot.AnimatedSprite2D
-  self.VisibleOnScreenNotifier2D = self/"VisibleOnScreenNotifier2D" as godot.VisibleOnScreenNotifier2D
+  self.AnimatedSprite2D = self/"AnimatedSprite2D" as AnimatedSprite2D
+  self.VisibleOnScreenNotifier2D = self/"VisibleOnScreenNotifier2D" as VisibleOnScreenNotifier2D
   discard self.VisibleOnScreenNotifier2D.connect("screen_exited", self.callable("_on_visible_on_screen_notifier_2d_screen_exited"))
 
   let mobTypes = self.AnimatedSprite2D.spriteFrames.getAnimationNames
