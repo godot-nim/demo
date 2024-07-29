@@ -50,7 +50,7 @@ proc game_over(self: Main) {.gdsync.} =
   self.Hud.show_game_over()
 
 method ready(self: Main) {.gdsync.} =
-  if self.getTree.editedSceneRoot != nil: return
+  if isRunningInEditor: return
   self.Player = self/Player
   self.Hud = self/Hud
   self.MobTimer = self/"MobTimer" as Timer
