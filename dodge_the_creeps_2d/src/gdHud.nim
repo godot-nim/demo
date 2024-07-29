@@ -47,7 +47,7 @@ proc on_StartButton_pressed*(self: Hud) {.gdsync, name: "_on_start_button_presse
 
 
 method ready*(self: Hud) {.gdsync.} =
-  if self.getTree.editedSceneRoot != nil: return
+  if isRunningInEditor: return
   self.ScoreLabel = self/"ScoreLabel" as Label
   self.Message = self/"Message" as Label
   self.StartButton = self/"StartButton" as Button

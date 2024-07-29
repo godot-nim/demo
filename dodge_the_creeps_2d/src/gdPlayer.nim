@@ -27,6 +27,7 @@ proc start*(self: Player; pos: Vector2) {.gdsync.} =
   self.CollisionShape2D.disabled = false
 
 method ready(self: Player) {.gdsync.} =
+  if isRunningInEditor: return
   screen_size = self.getViewportRect().size
   self.Input = /godot.Input
   self.InputMap = /godot.InputMap
@@ -37,9 +38,7 @@ method ready(self: Player) {.gdsync.} =
   hide self
 
 method process(self: Player; delta: float64) {.gdsync.} =
-  #HACK currently _process is executed while in editor.
-  if self.getTree.editedSceneRoot != nil: return
-
+  if isRunningInEditor: return
   var velocity: Vector2
   if self.Input.isActionPressed "move_right":
     velocity.*x += 1
