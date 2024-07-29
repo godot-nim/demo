@@ -1,4 +1,4 @@
-import godot
+import gdext
 
 import myclass
 

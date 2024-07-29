@@ -1,19 +1,19 @@
 import std/random
 
-import godot
+import gdext
 
 import gdPlayer
 import gdMob
 import gdHud
 
-import godotgen/classes/gdSceneTree
-import godotgen/classes/gdNode
-import godotgen/classes/gdMarker2D
-import godotgen/classes/gdTimer
-import godotgen/classes/gdPackedScene
-import godotgen/classes/gdPathFollow2D
-import godotgen/classes/gdRigidBody2D
-import godotgen/classes/gdAudioStreamPlayer
+import gdextgen/classes/gdSceneTree
+import gdextgen/classes/gdNode
+import gdextgen/classes/gdMarker2D
+import gdextgen/classes/gdTimer
+import gdextgen/classes/gdPackedScene
+import gdextgen/classes/gdPathFollow2D
+import gdextgen/classes/gdRigidBody2D
+import gdextgen/classes/gdAudioStreamPlayer
 
 type Main* = ref object of Node
   mob_scene {.getter: "get_mob_scene", setter: "set_mob_scene".} : gdref PackedScene
