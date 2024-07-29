@@ -2,33 +2,9 @@
 
 List of demo projects using godot-nim
 
-## Set up
+For more detail, see [wiki](https://github.com/godot-nim/docs/wiki); especially [Run demo projects](https://github.com/godot-nim/docs/wiki/Run-demo-projects).
 
-### 1. install [minister](https://github.com/godot-nim/minister) that is an assistant to develop Godot&Nim game
+## Contribute
 
-```bash
-nimble install https://github.com/godot-nim/minister
-```
-
-### 2. run `minister install` to build & install whole godot library
-
-In this section, following modules are installed:
-
-* [godot-nim/coronation](https://github.com/godot-nim/coronation)
-* [godot-nim/godotcore](https://github.com/godot-nim/godotcore)
-* godotgen - built by coronation
-* [godot-nim/godot](https://github.com/godot-nim/godot)
-
-run `minister uninstall` enables to uninstall all above.
-
-### 3. go to the directory that you interested in and run `nimble build`
-
-> **( ! ) Required for first time**
->
-> ### 4. setup godot's project files
->
-> run `godot --editor` to create the project data (**.godot/**).
->
-> At this point, an error message stating that initialization of the extension has failed will be output. This is a bug, but not a problem. Reloading or closing the project will resolve it.
-
-### 5. press `F5` while godot editor or run `godot` to play the demo!
+godot-nim is currently seeking contributions of demo projects to help users learn how to use the library more specifically and to ensure that the library is working properly.
+If you have examples of ported demos using GDScript or other languages, or applications that are small enough to consist of a few classes, please consider contributing.
