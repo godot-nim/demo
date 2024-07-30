@@ -1,0 +1,14 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux.debug.x86_64 = "res://addons/main/lib/decbinhex4"
+linux.release.x86_64 = "res://addons/main/lib/decbinhex4"
+windows.debug.x86_64 = "res://addons/main/lib/decbinhex4"
+windows.release.x86_64 = "res://addons/main/lib/decbinhex4"
+
+[icons]
+MainClass = "res://addons/icons/control_nim.svg"
