@@ -31,6 +31,8 @@ proc convert_from_hexadecimal*(input_hex:string):string =
   return("Decimal is: " & $result_decimal & "\nBinary is: " & result_binary)
 
 proc benchmark*():string =
-  var t1: float = cpuTime(); var bench_sum: int64 = 0
+  var t1: float = cpuTime() 
+  var bench_sum: int64 = 0
   for n in 0..<100000000: bench_sum+=n #the lessthan sign is to match GDscript output sum
-  var t2: float = cpuTime(); return($("Sum is " & $bench_sum & "\n" & "Time taken: " & $(t2-t1) & "s? cpu time"))
+  var t2: float = cpuTime()
+  return($("Sum is " & $bench_sum & "\n" & "Time taken: " & $(t2-t1) & "s? cpu time"))
