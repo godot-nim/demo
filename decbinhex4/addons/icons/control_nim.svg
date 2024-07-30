@@ -4,7 +4,7 @@
    width="16"
    version="1.1"
    id="svg7"
-   sodipodi:docname="base_nim_icon.svg"
+   sodipodi:docname="control_nim.svg"
    inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -147,6 +147,61 @@
        y2="110.19421"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(0.10312501,0,0,0.10312501,-0.3637797,-1.3637794)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4-6"
+       id="linearGradient5-3"
+       x1="47.971931"
+       y1="110.19421"
+       x2="129.58815"
+       y2="110.19421"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.10312501,0,0,0.10312501,-0.3637797,-1.363779)" />
+    <linearGradient
+       id="linearGradient4-6"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffce11;stop-opacity:1;"
+         offset="0"
+         id="stop4-7" />
+      <stop
+         style="stop-color:#ffe065;stop-opacity:1;"
+         offset="0.27334714"
+         id="stop7" />
+      <stop
+         style="stop-color:#ffc80c;stop-opacity:1;"
+         offset="0.50877756"
+         id="stop6" />
+      <stop
+         style="stop-color:#cc9900;stop-opacity:1;"
+         offset="0.74367946"
+         id="stop3" />
+      <stop
+         style="stop-color:#996700;stop-opacity:1;"
+         offset="1"
+         id="stop5-5" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="0.54804611"
+       y1="2.6804204"
+       x2="15.451954"
+       y2="2.6804204"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient1"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#675300;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#2a2a2a;stop-opacity:1;"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="namedview7"
@@ -209,12 +264,14 @@
      fill="#c38ef1"
      d="m 1,1 v 14 h 1 v -2 h 2 v 2 h 8 v -2 h 2 v 2 h 1 V 1 H 14 V 3 H 12 V 1 H 4 V 3 H 2 V 1 Z M 2,5 H 4 V 7 H 2 Z m 10,0 h 2 V 7 H 12 Z M 2,9 h 2 v 2 H 2 Z m 10,0 h 2 v 2 h -2 z"
      id="path1-3"
-     style="display:none" />
+     style="display:none"
+     inkscape:label="animation_player" />
   <path
      fill="#fc7f7f"
      d="M 1,1 V 5 H 3 V 3 H 5 V 1 Z m 10,0 v 2 h 2 v 2 h 2 V 1 Z M 4,4 v 8 h 8 V 4 Z m 2,2 h 4 v 4 H 6 Z m -5,5 v 4 H 5 V 13 H 3 v -2 z m 12,0 v 2 h -2 v 2 h 4 v -4 z"
      id="path1"
-     style="display:none" />
+     style="display:none"
+     inkscape:label="area_3d" />
   <circle
      cx="8"
      cy="8"
@@ -223,11 +280,18 @@
      stroke="#8eef97"
      stroke-width="2"
      id="circle1"
-     style="display:inline" />
+     style="display:inline"
+     inkscape:label="control" />
   <path
-     style="display:inline;fill:url(#linearGradient5);stroke:none;stroke-width:0.61875;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     style="display:none;fill:url(#linearGradient5);stroke:none;stroke-width:0.61875;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      d="M 15,0 V 4 L 14,5 11,6 H 8 5 L 2,5 1,4 V 0 L 3,2 V 3 L 4,4 H 5 V 0 L 7,2 V 4 L 8,5 9,4 V 2 l 2,-2 v 4 h 1 L 13,3 V 2 Z"
      id="path1-6"
      sodipodi:nodetypes="ccccccccccccccccccccccccc"
-     inkscape:label="crown_front" />
+     inkscape:label="crown_nooutline" />
+  <path
+     style="display:inline;fill:url(#linearGradient5-3);stroke:url(#linearGradient2);stroke-width:0.903908;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+     d="M 15,0 V 4 L 14,5 11,6 H 8 5 L 2,5 1,4 V 0 L 3,2 V 3 L 4,4 H 5 V 0 L 7,2 V 4 L 8,5 9,4 V 2 l 2,-2 v 4 h 1 L 13,3 V 2 Z"
+     id="path1-6-3"
+     sodipodi:nodetypes="ccccccccccccccccccccccccc"
+     inkscape:label="crown" />
 </svg>
