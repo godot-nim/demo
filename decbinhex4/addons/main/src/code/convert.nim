@@ -3,14 +3,14 @@ import std/times #benchmark only
 
 # the asterisk is so it can be called from another file when imported
 proc convert_from_decimal*(input_decimal: string):string =
-  var result_binary: string = "reset binary result"; var result_hex: string = "reset hex result"
+  var result_binary; var result_hex:string
   if input_decimal.len < 20: result_binary = strip((input_decimal.parseInt).toBin(63), trailing = false, chars = {'0'})
   else: result_binary = "Output binary too large!"
   result_hex = strip(input_decimal.parseInt.toHex, trailing = false, chars = {'0'})
   return("Binary is: " & result_binary & "\nHexadecimal is: " & result_hex)
 
 proc convert_from_binary*(input_binary: string):string =
-  var result_decimal: int = 0; var result_hex:string = "reset hex result"
+  var result_decimal; var result_hex:string
   for i, c in input_binary:
     #use length to invert i... to get place without a decreasing variable
     if c == '1': result_decimal += 2^abs(i-(input_binary.len-1))
@@ -18,7 +18,7 @@ proc convert_from_binary*(input_binary: string):string =
   return("Decimal is: " & $result_decimal & "\nHexadecimal is: " & result_hex)
 
 proc convert_from_hexadecimal*(input_hex:string):string =
-  var result_decimal: int; var result_hex:string
+  var result_decimal:int; var result_hex:string
   var lengthvar_hex:int = input_hex.len-1
   for c in input_hex:
     case c #the number at the end is an offset to the ASCII code
