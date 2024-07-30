@@ -1,5 +1,5 @@
 import strutils, convert #convert.nim
-import gdext, gdextgen/classes / [gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton], gdextgen/classes / [gdWindow]
+import gdext, gdextgen/classes / [gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton], gdextgen/classes/gdWindow
 
 const (hex_letters, nonhex_chars, nonbinary_numbers) = (HexDigits - Digits, AllChars - HexDigits, Digits - {'0', '1'}) #set[char]
 
