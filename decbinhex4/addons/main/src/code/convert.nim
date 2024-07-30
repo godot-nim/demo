@@ -3,7 +3,7 @@ import std/times #benchmark only
 
 # the asterisk is so it can be called from another file when imported
 proc convert_from_decimal*(input_decimal: string):string =
-  var (result_binary, result_hex):(string, string)
+  var result_binary:string; var result_hex:string
   if input_decimal.len < 20: result_binary = strip((input_decimal.parseInt).toBin(63), trailing = false, chars = {'0'})
   else: result_binary = "Output binary too large!"
   result_hex = strip(input_decimal.parseInt.toHex, trailing = false, chars = {'0'})
