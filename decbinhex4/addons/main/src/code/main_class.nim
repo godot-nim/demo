@@ -65,7 +65,7 @@ proc inbox_text_changed(self: MainClass, intext: string) {.gdsync.} =
     (self.dec_node.disabled, self.bin_node.disabled) = (true, true)
     self.out_node.text = "Input hexadecimal overflow!"; return
   elif hex_letters in intext:
-    self.out_node.text ="Live hexadecimal conversion:\n" & ($(intext.parseHexInt)).insertSep(',') & " in decimal"
+    self.out_node.text = "Live hexadecimal conversion:\n" & ($(intext.parseHexInt)).insertSep(',') & " in decimal"
     (self.dec_node.disabled, self.bin_node.disabled) = (true, true); return
   if intext.len < 20: #parseInt cannot handle it
     if intext.parseInt == 0: self.disable_all_buttons(msg_input & " 0."); return
