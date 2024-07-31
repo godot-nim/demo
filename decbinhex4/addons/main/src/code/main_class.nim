@@ -47,7 +47,7 @@ proc disable_all_buttons(self: MainClass, message: string) =
 
 proc inbox_text_changed(self: MainClass, intext: string) {.gdsync.} =
   case intext.len
-  of 0: self.disable_all_buttons(msg_input); return
+  of 0: self.disable_all_buttons(msg_input); return #self chain needed when dealing w/nodes
   of 1..15:
     (self.dec_node.disabled, self.bin_node.disabled, self.hex_node.disabled) =
       (false, false, false)
@@ -69,7 +69,7 @@ proc inbox_text_changed(self: MainClass, intext: string) {.gdsync.} =
     (self.dec_node.disabled, self.bin_node.disabled) = (true, true); return
   if intext.len < 20: #parseInt cannot handle it
     if intext.parseInt == 0: self.disable_all_buttons(msg_input & " 0."); return
-  else:
+  else: #this can be collapsed, it's extra functionality
     try: #below: an empty string is not 0
       if 0 == (("0" & strip(intext, trailing = false, chars = {'0'})).parseInt):
         self.disable_all_buttons(msg_input & " 00."); return
