@@ -1,4 +1,4 @@
-import strutils, convert #[convert.nim, last pure-nim import]#, gdext
+import std/strutils, convert #[convert.nim, last pure-nim import]#, gdext
 import gdextgen/classes / [gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton, gdWindow]
 
 const
