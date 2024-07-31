@@ -1,7 +1,11 @@
-import strutils, convert #convert.nim
-import gdext, gdextgen/classes / [gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton], gdextgen/classes/gdWindow
+import strutils, convert #[convert.nim, last pure-nim import]#, gdext
+import gdextgen/classes / [gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton, gdWindow]
 
-const (hex_letters, nonhex_chars, nonbinary_numbers) = (HexDigits - Digits, AllChars - HexDigits, Digits - {'0', '1'}) #set[char]
+const
+  hex_letters:set[char] = HexDigits - Digits
+  nonhex_chars:set[char] = AllChars - HexDigits
+  nonbinary_nums:set[char] = Digits - {'0', '1'}
+  msg_input:string = "Waiting for valid input."
 
 type MainClass* = ref object of Control
   window:Window
@@ -12,49 +16,77 @@ type MainClass* = ref object of Control
 method ready(self: MainClass) {.gdsync.} =
   if isRunningInEditor: return
 
-  self.window = self.getWindow(); self.window.minSize = vector2i(325, 225); self.window.maxSize = vector2i(960, 480)
+  self.window = self.getWindow();
+  self.window.minSize = vector2i(325, 225)
+  self.window.maxSize = vector2i(960, 480)
 
-  self.in_node = self/"grid/inbox" as LineEdit; self.out_node = self/"grid/a/outlabel" as Label
+  self.in_node = self/"grid/inbox" as LineEdit
+  self.out_node = self/"grid/a/outlabel" as Label
   self.dec_node = self/"grid/decimal_button" as BaseButton
-  self.bin_node = self/"grid/binary_button" as BaseButton; self.bin_check = self/"grid/binary_check" as BaseButton
+  self.bin_node = self/"grid/binary_button" as BaseButton
   self.hex_node = self/"grid/hex_button" as BaseButton
+  self.bin_check = self/"grid/binary_check" as BaseButton
 
-  print "in signal: " & $(self.in_node.connect("text_changed", self.callable "inbox_text_changed"))
-  print "dec signal: " & $(self.dec_node.connect("pressed", self.callable "submit_decimal"));
-  print "bin signal: " & $(self.bin_node.connect("pressed", self.callable "submit_binary"))
-  print "hex signal: " & $(self.hex_node.connect("pressed", self.callable "submit_hex"))
+  print "in signal: " &
+    $(self.in_node.connect("text_changed", self.callable "inbox_text_changed"))
+  print "dec signal: " &
+    $(self.dec_node.connect("pressed", self.callable "submit_decimal"));
+  print "bin signal: " &
+    $(self.bin_node.connect("pressed", self.callable "submit_binary"))
+  print "hex signal: " &
+    $(self.hex_node.connect("pressed", self.callable "submit_hex"))
 
   self.out_node.text = "Hello from Nim-lang!"; print("Ready!")
-  #print(benchmark()) #benchmark from convert.nim
+  #print(benchmark()) #[benchmark from convert.nim]#
 
 
 proc disable_all_buttons(self: MainClass, message: string) =
-  (self.dec_node.disabled, self.bin_node.disabled, self.hex_node.disabled) = (true, true, true)
+  (self.dec_node.disabled, self.bin_node.disabled, self.hex_node.disabled) =
+    (true, true, true)
   self.out_node.text = message
 
 proc inbox_text_changed(self: MainClass, intext: string) {.gdsync.} =
-  if nonhex_chars in intext or intext.len == 0: self.disable_all_buttons("Waiting for valid input."); return #self chain needed when nodes handled
-  if intext.len > 63: self.disable_all_buttons("Input too large, causes overflow!"); return
-  self.out_node.text = "Waiting for button choice."; self.hex_node.disabled = false
-  if intext.len > 15:
+  case intext.len
+  of 0: self.disable_all_buttons(msg_input); return
+  of 1..15:
+    (self.dec_node.disabled, self.bin_node.disabled, self.hex_node.disabled) =
+      (false, false, false)
+  of 16..19:
     self.hex_node.disabled = true
-    if hex_letters in intext:
-      (self.dec_node.disabled, self.bin_node.disabled) = (true, true)
-      self.out_node.text = "Input hexadecimal too large, causes overflow!"; return #toHex limitation
-  if hex_letters in intext:
-    (self.dec_node.disabled, self.bin_node.disabled) = (true, true)
-    self.out_node.text = "Live hexadecimal conversion is:\n" & $(intext.parseHexInt) & " in decimal"; return
-  if intext.len < 20 and parseInt(intext) == 0: self.disable_all_buttons("Waiting for valid input. 0."); return
-  if intext.len >= 20: #this should've been handled in the old version, too
-    self.dec_node.disabled = true
-    if nonbinary_numbers in intext: self.out_node.text = "Input decimal too large, causes overflow!"; return
-  if nonbinary_numbers in intext: self.bin_node.disabled = true; self.dec_node.disabled = false
-  else:
     (self.dec_node.disabled, self.bin_node.disabled) = (false, false)
-    if self.bin_check.is_pressed:
-      if intext.len < 20: self.out_node.text = "Live binary conversion is:\n" & $(intext.parseBinInt) & " in decimal"
-      else: self.out_node.text = "Input decimal too large to parse for live convert, please use button"
+  of 20..63:
+    (self.hex_node.disabled, self.dec_node.disabled) = (true, true)
+    if nonbinary_nums notin intext: self.bin_node.disabled = false
+  of 64..high(int): self.disable_all_buttons("Input overflow!"); return
+  else: print "what"
 
-proc submit_decimal(self: MainClass) {.gdsync.} = self.out_node.text = convert_from_decimal($(self.in_node.text))
-proc submit_binary(self: MainClass) {.gdSync.} = self.out_node.text = convert_from_binary($(self.in_node.text))
-proc submit_hex(self: MainClass) {.gdSync.} = self.out_node.text = convert_from_hexadecimal($(self.in_node.text))
+  if nonhex_chars in intext: self.disable_all_buttons(msg_input); return
+  if hex_letters in intext and self.hex_node.disabled:
+    (self.dec_node.disabled, self.bin_node.disabled) = (true, true)
+    self.out_node.text = "Input hexadecimal overflow!"; return
+  elif hex_letters in intext:
+    self.out_node.text ="Live hexadecimal conversion:\n" & ($(intext.parseHexInt)).insertSep(',') & " in decimal"
+    (self.dec_node.disabled, self.bin_node.disabled) = (true, true); return
+  if intext.len < 20: #parseInt cannot handle it
+    if intext.parseInt == 0: self.disable_all_buttons(msg_input & " 0."); return
+  else:
+    try: #below: an empty string is not 0
+      if 0 == (("0" & strip(intext, trailing = false, chars = {'0'})).parseInt):
+        self.disable_all_buttons(msg_input & " 00."); return
+    except ValueError: discard #I tried
+  if nonbinary_nums in intext and self.dec_node.disabled:
+    self.out_node.text = "Input decimal overflow!"; return
+  if nonbinary_nums in intext: self.bin_node.disabled = true
+  elif self.bin_check.is_pressed and not self.dec_node.disabled:
+    self.out_node.text = "Live binary conversion:\n" &
+      ($(intext.parseBinInt)).insertSep(',') & " in decimal"; return
+  elif self.bin_check.is_pressed and self.dec_node.disabled:
+    self.out_node.text = "Input decimal too large to convert live, use button."; return
+  self.out_node.text = "Waiting for choice."
+
+proc submit_decimal(self: MainClass) {.gdsync.} =
+  self.out_node.text = convert_from_decimal($(self.in_node.text))
+proc submit_binary(self: MainClass) {.gdSync.} =
+  self.out_node.text = convert_from_binary($(self.in_node.text))
+proc submit_hex(self: MainClass) {.gdSync.} =
+  self.out_node.text = convert_from_hexadecimal($(self.in_node.text))
