@@ -1,3 +1,4 @@
+switch("define", "projectName:" & projectName())
 --app: "lib"
 --noMain: "on"
 --define: "nimPreviewDotLikeOps"
