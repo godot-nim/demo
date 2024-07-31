@@ -1,4 +1,4 @@
-import std / [math, strutils, #[benchmark only]# std/times]
+import std / [math, strutils, #[benchmark only]# times]
 
 # the asterisk is so it can be called from another file when imported
 proc convert_from_decimal*(input_decimal: string):string =
