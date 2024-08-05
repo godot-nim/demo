@@ -1,6 +1,6 @@
 # decbinhex
 
-![readme/decbinhex4_preview]
+![.README/decbinhex4_preview]
 
 A number converter program, updated to Godot 4. Available functionality depends on text entered. Has limited live-conversion available.
 
