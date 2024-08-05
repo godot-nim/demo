@@ -5,10 +5,8 @@ compatibility_minimum = 4.1
 
 [libraries]
 
-linux.debug.x86_64 = "res://core/movement_demo/lib/libmovement_demo.so"
-linux.release.x86_64 = "res://core/movement_demo/lib/libmovement_demo.so"
-windows.debug.x86_64 = "res://core/movement_demo/lib/libmovement_demo.dll"
-windows.release.x86_64 = "res://core/movement_demo/lib/libmovement_demo.dll"
+linux = "res://core/movement_demo/lib/libmovement_demo.so"
+windows = "res://core/movement_demo/lib/libmovement_demo.dll"
 
 [icons]
 PolygonClass = "res://core/icons/polygon_nim.png"

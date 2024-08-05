@@ -5,10 +5,8 @@ compatibility_minimum = 4.1
 
 [libraries]
 
-linux.debug.x86_64 = "res://core/lib/libcore.so"
-linux.release.x86_64 = "res://core/lib/libcore.so"
-windows.debug.x86_64 = "res://core/lib/libcore.dll"
-windows.release.x86_64 = "res://core/lib/libcore.dll"
+linux = "res://core/lib/libcore.so"
+windows = "res://core/lib/libcore.dll"
 
 [icons]
 MainClass = "res://core/icons/control_nim.svg"
