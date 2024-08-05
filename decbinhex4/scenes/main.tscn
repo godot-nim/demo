@@ -1,0 +1,139 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl4cqdruptxqu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s32o6"]
+bg_color = Color(0.242188, 0.242188, 0.242188, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_mt72h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lv4a"]
+bg_color = Color(0.0666667, 0.0666667, 0.027451, 1)
+border_width_left = 5
+border_width_top = 2
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 20
+shadow_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_8csjl"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+outline_size = 6
+outline_color = Color(0.312959, 1, 0, 1)
+
+[node name="main_class" type="MainClass"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s32o6")
+metadata/_edit_use_anchors_ = true
+
+[node name="grid" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inbox" type="LineEdit" parent="grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+placeholder_text = "input a number to convert"
+alignment = 1
+clear_button_enabled = true
+
+[node name="binary_check" type="CheckBox" parent="grid"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "live binary-to-decimal"
+
+[node name="decimal_button" type="Button" parent="grid"]
+layout_mode = 2
+theme = SubResource("Theme_mt72h")
+disabled = true
+text = "Convert from decimal"
+flat = true
+
+[node name="binary_button" type="Button" parent="grid"]
+layout_mode = 2
+theme = SubResource("Theme_mt72h")
+disabled = true
+text = "Convert from binary"
+flat = true
+
+[node name="hex_button" type="Button" parent="grid"]
+layout_mode = 2
+theme = SubResource("Theme_mt72h")
+disabled = true
+text = "Convert from hexadecimal"
+flat = true
+
+[node name="a" type="PanelContainer" parent="grid"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lv4a")
+
+[node name="outlabel" type="Label" parent="grid/a"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PolygonClass" type="PolygonClass" parent="."]
+editor_description = "Demonstrates basic movement."
+visible = false
+clip_children = 2
+position = Vector2(333, 107)
+color = Color(0.352941, 0.937255, 1, 1)
+offset = Vector2(-333, -107)
+polygon = PackedVector2Array(309, 135, 333, 128, 356, 135, 334, 56)
+
+[node name="Line2D" type="Line2D" parent="PolygonClass"]
+points = PackedVector2Array(-2, -53, -3, 54, 3, 56, 4, -55)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="TestLabelClass" type="TestLabelClass" parent="PolygonClass"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -13.0
+offset_right = 20.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_8csjl")
+horizontal_alignment = 1
