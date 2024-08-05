@@ -7,8 +7,8 @@ import os
 
 let workspaceName = projectDir().splitFile.name
 
-switch("define", "projectName:" & workspaceName)
-switch("out", "$projectdir/lib"/workspaceName.toDll)
+switch("define", "ExtensionName:" & workspaceName)
+switch("out", "$projectdir/lib/" & workspaceName.toDll)
 
 # begin Nimble config (version 2)
 when withDir(thisDir(), system.fileExists("nimble.paths")):
