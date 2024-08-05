@@ -1,6 +1,6 @@
 # decbinhex4
 
-![](readme/decbinhex4_preview.png)
+![A screenshot of the demo program. A text input reads 111A, 2 options are greyed out while one has been clicked: Convert from hexadecimal. A result box at the bottom says "Decimal is: 4378". There's also a binary result but I'm sure you believe me.](readme/decbinhex4_preview.png)
 
 A number converter program, updated to Godot 4. Available functionality depends on text entered. Has limited live-conversion available.
 
