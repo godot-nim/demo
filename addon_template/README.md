@@ -1,3 +1,3 @@
 # demo/addon_template
 
-Blank addon template for quick start
+Blank template to demonstrate addon structure. May change in the future.
