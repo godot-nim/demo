@@ -1,7 +1,3 @@
---app: lib
---noMain: on
---define: nimPreviewDotLikeOps
-
 # begin Nimble config (version 2)
 when withDir(thisDir(), system.fileExists("nimble.paths")):
   include "nimble.paths"
