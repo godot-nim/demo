@@ -1,0 +1,9 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux = "res://core/lib/libcore.so"
+windows = "res://core/lib/libcore.dll"
