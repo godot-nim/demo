@@ -39,6 +39,13 @@ method ready(self: Player) {.gdsync.} =
 
 method process(self: Player; delta: float64) {.gdsync.} =
   if isRunningInEditor: return
+
+  if self.Input.isActionPressed "ui_cancel":
+    self.getTree.quit()
+  if self.Input.isActionJustPressed "pause_game":
+    self.get_tree().paused = not self.get_tree().paused
+  if self.get_tree().paused == true: return
+
   var velocity: Vector2
   if self.Input.isActionPressed "move_right":
     velocity.*x += 1
