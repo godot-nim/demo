@@ -1,5 +1,15 @@
 # "Dodge the Creeps! 2D" with godot-nim
 
+Back again, demonstrating the following concepts:
+- Node and scene structure
+- Instancing scenes
+- Input
+- Signals
+- UI
+- Sounds
+
+![A small and lonely creature trying its best to survive by avoiding a sea of other strange creatures.](art/dtc2d_preview.png)
+
 ## Copying
 
 `art/House In a Forest Loop.ogg` Copyright &copy; 2012 [HorrorPen](https://opengameart.org/users/horrorpen), [CC-BY 3.0: Attribution](http://creativecommons.org/licenses/by/3.0/). Source: https://opengameart.org/content/loop-house-in-a-forest
