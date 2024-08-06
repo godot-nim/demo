@@ -4,7 +4,7 @@
 
 A number converter program, updated to Godot 4. Available functionality depends on text entered. Has limited live-conversion available.
 
-How to run: Compile with `nim c bootstrap` in the core folder. (I use this command in my editor to compile from any src file: `nim c ../bootstrap`)
+How to run: Compile with `nim c bootstrap` in the `core` folder. (I use this command in my editor to compile from any src file: `nim c ../bootstrap`)
 
 Extras:
 
