@@ -6,9 +6,7 @@ import gdextgen/classes/gdLabel
 import gdextgen/classes/gdTimer
 import gdextgen/classes/gdInput
 
-var
-  was_paused: bool = false
-  is_playing: bool = false
+var is_playing: bool
 
 type Hud* = ref object of CanvasLayer
   ScoreLabel*: Label
@@ -79,12 +77,8 @@ method process(self: Hud; delta: float64) {.gdsync.} =
 
   if self.Input.isActionPressed "ui_cancel": self.getTree.quit()
   if not is_playing: return #prevents pausing menu
+  self.Message.text = "Paused"
   if self.Input.isActionJustPressed "pause_game": #Just avoids flickering pause
-    self.get_tree().paused = not self.get_tree().paused #invert pause
-    if was_paused:
-      hide self.Message
-      was_paused = false
-    else:
-      self.show_message "Paused"
-      was_paused = true
+    self.get_tree().paused = not self.get_tree().paused #inverts
+    self.Message.visible = not self.Message.visible
   #if self.get_tree().paused: return #for later process code that should not run when paused
