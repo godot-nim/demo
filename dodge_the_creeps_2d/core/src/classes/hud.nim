@@ -6,8 +6,6 @@ import gdextgen/classes/gdLabel
 import gdextgen/classes/gdTimer
 import gdextgen/classes/gdInput
 
-var is_playing: bool
-
 type Hud* = ref object of CanvasLayer
   ScoreLabel*: Label
   Message*: Label
@@ -19,6 +17,7 @@ type Hud* = ref object of CanvasLayer
 
   Input: Input #needed for pause
   InputMap: InputMap
+  playing: Bool
 
 proc start_game*(self: Hud): Error {.gdsync, signal.}
 
@@ -36,7 +35,7 @@ proc show_get_ready*(self: Hud) {.gdsync.} =
 proc show_game_over*(self: Hud) {.gdsync.} =
   self.show_message "Game Over"
   start self.GameOverTimer
-  is_playing = false
+  self.playing = false
 
 proc on_GameOverTimer_timeout*(self: Hud) {.gdsync, name: "_on_game_over_timer_timeout".} =
   self.show_message "Dodge the Creeps!"
@@ -44,7 +43,7 @@ proc on_GameOverTimer_timeout*(self: Hud) {.gdsync, name: "_on_game_over_timer_t
 
 proc on_GetReadyTimer_timeout*(self: Hud) {.gdsync, name: "_on_get_ready_timer_timeout".} =
   hide self.Message
-  is_playing = true
+  self.playing = true
 
 proc on_StartButtonTimer_timeout*(self: Hud) {.gdsync, name: "_on_start_button_timer_timeout".} =
   show self.StartButton
@@ -76,7 +75,7 @@ method process(self: Hud; delta: float64) {.gdsync.} =
   if isRunningInEditor: return
 
   if self.Input.isActionPressed "ui_cancel": self.getTree.quit()
-  if not is_playing: return #no pausing in menu/ready_timer, which have their own message text
+  if not self.playing: return #no pausing in menu/ready_timer, which have their own message text
   self.Message.text = "Paused"
   if self.Input.isActionJustPressed "pause_game": #Just avoids flickering pause
     self.get_tree().paused = not self.get_tree().paused #inverts
