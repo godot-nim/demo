@@ -4,6 +4,11 @@ import gdextgen/classes/gdSceneTree
 import gdextgen/classes/gdLabel
 # import gdextgen/classes/gdButton
 import gdextgen/classes/gdTimer
+import gdextgen/classes/gdInput
+
+var
+  was_paused: bool = false
+  is_playing: bool = false
 
 type Hud* = ref object of CanvasLayer
   ScoreLabel*: Label
@@ -13,6 +18,9 @@ type Hud* = ref object of CanvasLayer
   GameOverTimer*: Timer
   GetReadyTimer*: Timer
   StartButtonTimer*: Timer
+
+  Input: Input #needed for pause
+  InputMap: InputMap
 
 proc start_game*(self: Hud): Error {.gdsync, signal.}
 
@@ -30,6 +38,7 @@ proc show_get_ready*(self: Hud) {.gdsync.} =
 proc show_game_over*(self: Hud) {.gdsync.} =
   self.show_message "Game Over"
   start self.GameOverTimer
+  is_playing = false
 
 proc on_GameOverTimer_timeout*(self: Hud) {.gdsync, name: "_on_game_over_timer_timeout".} =
   self.show_message "Dodge the Creeps!"
@@ -37,6 +46,7 @@ proc on_GameOverTimer_timeout*(self: Hud) {.gdsync, name: "_on_game_over_timer_t
 
 proc on_GetReadyTimer_timeout*(self: Hud) {.gdsync, name: "_on_get_ready_timer_timeout".} =
   hide self.Message
+  is_playing = true
 
 proc on_StartButtonTimer_timeout*(self: Hud) {.gdsync, name: "_on_start_button_timer_timeout".} =
   show self.StartButton
@@ -56,7 +66,25 @@ method ready*(self: Hud) {.gdsync.} =
   self.GetReadyTimer = self/"GetReadyTimer" as Timer
   self.StartButtonTimer = self/"StartButtonTimer" as Timer
 
+  self.Input = /Input #needed for pause
+  self.InputMap = /InputMap
+
   discard self.GameOverTimer.connect("timeout", self.callable("_on_game_over_timer_timeout"))
   discard self.GetReadyTimer.connect("timeout", self.callable( "_on_get_ready_timer_timeout"))
   discard self.StartButtonTimer.connect("timeout", self.callable( "_on_start_button_timer_timeout"))
   discard self.StartButton.connect("pressed", self.callable( "_on_start_button_pressed"))
+
+method process(self: Hud; delta: float64) {.gdsync.} =
+  if isRunningInEditor: return
+
+  if self.Input.isActionPressed "ui_cancel": self.getTree.quit()
+  if not is_playing: return #prevents pausing menu
+  if self.Input.isActionJustPressed "pause_game": #Just avoids flickering pause
+    self.get_tree().paused = not self.get_tree().paused #invert pause
+    if was_paused:
+      hide self.Message
+      was_paused = false
+    else:
+      self.show_message "Paused"
+      was_paused = true
+  #if self.get_tree().paused: return #for later process code that should not run when paused
