@@ -1,5 +1,7 @@
 # "Dodge the Creeps! 2D" with godot-nim
 
+<img align="right" src="art/dtc2d_preview.png" alt="A small and lonely creature trying its best to survive by avoiding a sea of other strange creatures."/>
+
 Back again, demonstrating the following concepts:
 - Node and scene structure
 - Instancing scenes
@@ -7,8 +9,6 @@ Back again, demonstrating the following concepts:
 - Signals
 - UI
 - Sounds
-
-![A small and lonely creature trying its best to survive by avoiding a sea of other strange creatures.](art/dtc2d_preview.png)
 
 ## Copying
 
