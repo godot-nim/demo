@@ -12,6 +12,7 @@ Back again, demonstrating the following concepts:
 
 Compile with `nim c bootstrap` in `core` folder. After this, the editor will have an error on first open (gdextension limitation), close the editor and open it again and it should work. You may still need to switch to 2D tab to see the scene (not needed to run project).
 
+Game controls: Arrows/WASD for movement. Space bar or p-key for pause during gameplay. Esc to exit.
 
 ## Copying
 
