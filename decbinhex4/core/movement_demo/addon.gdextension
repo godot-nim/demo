@@ -1,0 +1,12 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux = "res://core/movement_demo/lib/libmovement_demo.so"
+windows = "res://core/movement_demo/lib/libmovement_demo.dll"
+
+[icons]
+PolygonClass = "res://core/icons/polygon_nim.png"

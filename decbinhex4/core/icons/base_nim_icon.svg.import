@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bih2p2y0f6hw0"
-path="res://.godot/imported/node2d_nim.svg-03e0386e2d435b605c6b6536233f4fbc.ctex"
+uid="uid://b7b2vjgt7l6cm"
+path="res://.godot/imported/base_nim_icon.svg-84e56ef8a6c32ce20436eb5a2ca96760.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/icons/node2d_nim.svg"
-dest_files=["res://.godot/imported/node2d_nim.svg-03e0386e2d435b605c6b6536233f4fbc.ctex"]
+source_file="res://core/icons/base_nim_icon.svg"
+dest_files=["res://.godot/imported/base_nim_icon.svg-84e56ef8a6c32ce20436eb5a2ca96760.ctex"]
 
 [params]
 

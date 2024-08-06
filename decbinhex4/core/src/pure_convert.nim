@@ -1,7 +1,7 @@
 import std / [math, strutils, #[benchmark only]# times]
 
 # the asterisk is so it can be called from another file when imported
-proc convert_from_decimal*(input_decimal: string):string =
+proc convert_from_decimal*(input_decimal:string):string =
   var result_binary:string
   if input_decimal.len < 20:
     result_binary =
@@ -11,7 +11,7 @@ proc convert_from_decimal*(input_decimal: string):string =
     strip(input_decimal.parseInt.toHex, trailing = false, chars = {'0'})
   return("Binary is: " & result_binary & "\nHexadecimal is: " & result_hex)
 
-proc convert_from_binary*(input_binary: string):string =
+proc convert_from_binary*(input_binary:string):string =
   var sum_decimal: int
   for i, c in input_binary:
     #use length to invert i... to get place without a decreasing variable

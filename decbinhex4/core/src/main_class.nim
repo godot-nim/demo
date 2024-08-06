@@ -1,5 +1,5 @@
-import std/strutils, convert #[convert.nim, last pure-nim import]#, gdext
-import gdextgen/classes / [gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton, gdWindow]
+import std/strutils, pure_convert #[pure_convert.nim, last pure-nim import]#, gdext
+import gdextgen/classes / [gdInput, gdLineEdit, gdLabel, gdBaseButton, gdWindow]
 
 const
   hex_letters:set[char] = HexDigits - Digits
@@ -13,7 +13,8 @@ type MainClass* = ref object of Control
   out_node:Label
   dec_node, bin_node, hex_node, bin_check:BaseButton
 
-method ready(self: MainClass) {.gdsync.} =
+
+method ready(self:MainClass) {.gdsync.} =
   if isRunningInEditor: return
 
   self.window = self.getWindow();
@@ -40,12 +41,12 @@ method ready(self: MainClass) {.gdsync.} =
   #print(benchmark()) #[benchmark from convert.nim]#
 
 
-proc disable_all_buttons(self: MainClass, message: string) =
+proc disable_all_buttons(self:MainClass, message:string) =
   (self.dec_node.disabled, self.bin_node.disabled, self.hex_node.disabled) =
     (true, true, true)
   self.out_node.text = message
 
-proc inbox_text_changed(self: MainClass, intext: string) {.gdsync.} =
+proc inbox_text_changed(self:MainClass, intext:string) {.gdsync.} =
   case intext.len
   of 0: self.disable_all_buttons(msg_input); return #self chain needed when dealing w/nodes
   of 1..15:
@@ -77,16 +78,14 @@ proc inbox_text_changed(self: MainClass, intext: string) {.gdsync.} =
   if nonbinary_nums in intext and self.dec_node.disabled:
     self.out_node.text = "Input decimal overflow!"; return
   if nonbinary_nums in intext: self.bin_node.disabled = true
-  elif self.bin_check.is_pressed and not self.dec_node.disabled:
+  if self.bin_check.is_pressed:
     self.out_node.text = "Live binary conversion:\n" &
       ($(intext.parseBinInt)).insertSep(',') & " in decimal"; return
-  elif self.bin_check.is_pressed and self.dec_node.disabled:
-    self.out_node.text = "Input decimal too large to convert live, use button."; return
   self.out_node.text = "Waiting for choice."
 
-proc submit_decimal(self: MainClass) {.gdsync.} =
-  self.out_node.text = convert_from_decimal($(self.in_node.text))
-proc submit_binary(self: MainClass) {.gdSync.} =
+proc submit_decimal(self:MainClass) {.gdsync.} =
+  self.out_node.text = convert_from_decimal($(self.in_node.text)) #[from pure_convert.nim]#
+proc submit_binary(self:MainClass) {.gdSync.} =
   self.out_node.text = convert_from_binary($(self.in_node.text))
-proc submit_hex(self: MainClass) {.gdSync.} =
+proc submit_hex(self:MainClass) {.gdSync.} =
   self.out_node.text = convert_from_hexadecimal($(self.in_node.text))
