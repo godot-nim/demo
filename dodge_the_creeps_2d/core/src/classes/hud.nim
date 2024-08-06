@@ -76,7 +76,7 @@ method process(self: Hud; delta: float64) {.gdsync.} =
   if isRunningInEditor: return
 
   if self.Input.isActionPressed "ui_cancel": self.getTree.quit()
-  if not is_playing: return #prevents pausing menu
+  if not is_playing: return #no pausing in menu/ready_timer, which have their own message text
   self.Message.text = "Paused"
   if self.Input.isActionJustPressed "pause_game": #Just avoids flickering pause
     self.get_tree().paused = not self.get_tree().paused #inverts
