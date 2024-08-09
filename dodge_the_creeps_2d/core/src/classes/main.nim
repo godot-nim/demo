@@ -78,7 +78,7 @@ proc on_StartTimer_timeout(self: Main) {.gdsync, name: "_on_start_timer_timeout"
   start self.ScoreTimer
 
 proc on_MobTimer_timeout(self: Main) {.gdsync, name: "_on_mob_timer_timeout".} =
-  let mob = self.mob_scene.instantiate as Mob
+  let mob = self.mob_scene[].instantiate as Mob
   self.MobSpawnLocation.progressRatio = rand(1f)
 
   var direction = self.MobSpawnLocation.rotation + PI/2
