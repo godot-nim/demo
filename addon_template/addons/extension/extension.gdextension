@@ -5,7 +5,5 @@ compatibility_minimum = 4.1
 
 [libraries]
 
-linux.debug.x86_64 = "res://lib/extension"
-linux.release.x86_64 = "res://lib/extension"
-windows.debug.x86_64 = "res://lib/extension"
-windows.release.x86_64 = "res://lib/extension"
+linux = "res://lib/libextension.so"
+windows = "res://lib/extension.dll"
