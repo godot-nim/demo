@@ -6,7 +6,7 @@ compatibility_minimum = 4.1
 [libraries]
 
 linux = "res://core/lib/libcore.so"
-windows = "res://core/lib/libcore.dll"
+windows = "res://core/lib/core.dll"
 
 [icons]
 MainClass = "res://core/icons/control_nim.svg"

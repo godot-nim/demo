@@ -6,7 +6,7 @@ compatibility_minimum = 4.1
 [libraries]
 
 linux = "res://core/movement_demo/lib/libmovement_demo.so"
-windows = "res://core/movement_demo/lib/libmovement_demo.dll"
+windows = "res://core/movement_demo/lib/movement_demo.dll"
 
 [icons]
 PolygonClass = "res://core/icons/polygon_nim.png"
