@@ -43,7 +43,7 @@ proc output(self: MainClass; text: string) =
   self.out_node.text = text
 
 method ready(self: MainClass) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
 
   self.window = self.getWindow()
   self.window.minSize = vector2i(325, 225)

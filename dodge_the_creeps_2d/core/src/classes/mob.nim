@@ -10,7 +10,7 @@ type Mob* = ref object of RigidBody2D
   VisibleOnScreenNotifier2D: VisibleOnScreenNotifier2D
 
 method ready(self: Mob) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
   self.AnimatedSprite2D = self/"AnimatedSprite2D" as AnimatedSprite2D
   self.VisibleOnScreenNotifier2D = self/"VisibleOnScreenNotifier2D" as VisibleOnScreenNotifier2D
   discard self.VisibleOnScreenNotifier2D.connect("screen_exited", self.callable("_on_visible_on_screen_notifier_2d_screen_exited"))

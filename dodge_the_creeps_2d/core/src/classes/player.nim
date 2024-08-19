@@ -9,8 +9,6 @@ var screen_size: Vector2
 
 type Player* = ref object of Area2D
   speed {.getter: "get_speed", setter: "set_speed".}: float32 = 400
-  Input: Input
-  InputMap: InputMap
   AnimatedSprite2D: AnimatedSprite2D
   CollisionShape2D: CollisionShape2D
 
@@ -27,10 +25,8 @@ proc start*(self: Player; pos: Vector2) {.gdsync.} =
   self.CollisionShape2D.disabled = false
 
 method ready(self: Player) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
   screen_size = self.getViewportRect().size
-  self.Input = /Input
-  self.InputMap = /InputMap
   self.AnimatedSprite2D = self/AnimatedSprite2D
   self.CollisionShape2D = self/CollisionShape2D
   discard self.connect("body_entered", self.callable("_on_body_entered"))
@@ -38,16 +34,16 @@ method ready(self: Player) {.gdsync.} =
   hide self
 
 method process(self: Player; delta: float64) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
 
   var velocity: Vector2
-  if self.Input.isActionPressed "move_right":
+  if Input.isActionPressed "move_right":
     velocity.*x += 1
-  if self.Input.isActionPressed "move_left":
+  if Input.isActionPressed "move_left":
     velocity.*x -= 1
-  if self.Input.isActionPressed "move_down":
+  if Input.isActionPressed "move_down":
     velocity.*y += 1
-  if self.Input.isActionPressed "move_up":
+  if Input.isActionPressed "move_up":
     velocity.*y -= 1
 
   if velocity.length > 0:

@@ -15,8 +15,6 @@ type Hud* = ref object of CanvasLayer
   GetReadyTimer*: Timer
   StartButtonTimer*: Timer
 
-  Input: Input #needed for pause
-  InputMap: InputMap
   playing: Bool
 
 proc start_game*(self: Hud): Error {.gdsync, signal.}
@@ -54,7 +52,7 @@ proc on_StartButton_pressed*(self: Hud) {.gdsync, name: "_on_start_button_presse
 
 
 method ready*(self: Hud) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
   self.ScoreLabel = self/"ScoreLabel" as Label
   self.Message = self/"Message" as Label
   self.StartButton = self/"StartButton" as Button
@@ -63,21 +61,18 @@ method ready*(self: Hud) {.gdsync.} =
   self.GetReadyTimer = self/"GetReadyTimer" as Timer
   self.StartButtonTimer = self/"StartButtonTimer" as Timer
 
-  self.Input = /Input #needed for pause
-  self.InputMap = /InputMap
-
   discard self.GameOverTimer.connect("timeout", self.callable("_on_game_over_timer_timeout"))
   discard self.GetReadyTimer.connect("timeout", self.callable( "_on_get_ready_timer_timeout"))
   discard self.StartButtonTimer.connect("timeout", self.callable( "_on_start_button_timer_timeout"))
   discard self.StartButton.connect("pressed", self.callable( "_on_start_button_pressed"))
 
 method process(self: Hud; delta: float64) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
 
-  if self.Input.isActionPressed "ui_cancel": self.getTree.quit()
+  if Input.isActionPressed "ui_cancel": self.getTree.quit()
   if not self.playing: return #no pausing in menu/ready_timer, which have their own message text
   self.Message.text = "Paused"
-  if self.Input.isActionJustPressed "pause_game": #Just avoids flickering pause
+  if Input.isActionJustPressed "pause_game": #Just avoids flickering pause
     self.get_tree().paused = not self.get_tree().paused #inverts
     self.Message.visible = not self.Message.visible
   #if self.get_tree().paused: return #for later process code that should not run when paused

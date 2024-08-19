@@ -50,7 +50,7 @@ proc game_over(self: Main) {.gdsync.} =
   self.Hud.show_game_over()
 
 method ready(self: Main) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
   self.Player = self/Player
   self.Hud = self/Hud
   self.MobTimer = self/"MobTimer" as Timer

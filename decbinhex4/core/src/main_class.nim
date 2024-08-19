@@ -15,7 +15,7 @@ type MainClass* = ref object of Control
 
 
 method ready(self:MainClass) {.gdsync.} =
-  if isRunningInEditor: return
+  if Engine.isEditorHint: return
 
   self.window = self.getWindow();
   self.window.minSize = vector2i(325, 225)
