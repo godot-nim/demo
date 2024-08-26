@@ -8,16 +8,15 @@ import gdextgen/classes/gdCollisionShape2D
 var screen_size: Vector2
 
 type Player* = ref object of Area2D
-  speed {.getter: "get_speed", setter: "set_speed".}: float32 = 400
+  speed: float32 = 400
   AnimatedSprite2D: AnimatedSprite2D
   CollisionShape2D: CollisionShape2D
 
-proc hit*(self: Player): Error {.gdsync, signal.}
+`@export`"speed",
+    proc (self: Player): float32 = self.speed,
+    proc (self: Player; value: float32) = self.speed = value
 
-proc speed*(self: Player): float32 {.gdsync, name: "get_speed".} =
-  self.speed
-proc `speed=`*(self: Player; value: float32) {.gdsync, name: "set_speed".} =
-  self.speed = value
+proc hit*(self: Player): Error {.gdsync, signal.}
 
 proc start*(self: Player; pos: Vector2) {.gdsync.} =
   self.position = pos

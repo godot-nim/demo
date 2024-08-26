@@ -16,7 +16,7 @@ import gdextgen/classes/gdRigidBody2D
 import gdextgen/classes/gdAudioStreamPlayer
 
 type Main* = ref object of Node
-  mob_scene {.getter: "get_mob_scene", setter: "set_mob_scene".} : gdref PackedScene
+  mob_scene: gdref PackedScene
   score: int
   Player: Player
   MobTimer: Timer
@@ -28,10 +28,9 @@ type Main* = ref object of Node
   Music: AudioStreamPlayer
   DeathSound: AudioStreamPlayer
 
-proc `mob_scene=`(self: Main; value: gdref PackedScene) {.gdsync, name: "set_mob_scene".} =
-  self.mob_scene = value
-proc mob_scene(self: Main): gdref PackedScene {.gdsync, name: "get_mob_scene".} =
-  self.mob_scene
+`@export`"mob_scene",
+    proc (self: Main): gdref PackedScene = self.mob_scene,
+    proc (self: Main; value: gdref PackedScene) = self.mob_scene = value
 
 proc new_game(self: Main) {.gdsync.} =
   self.score = 0
