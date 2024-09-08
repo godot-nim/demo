@@ -1,7 +1,7 @@
 import gdext
 
 # import your extension classes here
-import src/movement_demo
+import movement_demo
 
 # ==================================
 
@@ -13,4 +13,4 @@ process initialize_scene:
   #discard
 
 
-GDExtensionEntryPoint name=init_library
+GDExtensionEntryPoint

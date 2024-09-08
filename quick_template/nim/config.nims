@@ -1,5 +1,5 @@
 import gdext/buildconf
 
-Extension.name = "Decbinhex4"
+Extension.name = "MyExtension"
 
 --path: src

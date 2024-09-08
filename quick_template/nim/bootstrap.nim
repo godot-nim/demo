@@ -10,7 +10,7 @@ process initialize_scene:
   register MyClass
 
   # ====================================
-  #discard
+  discard
 
 
-GDExtensionEntryPoint name=init_library
+GDExtensionEntryPoint

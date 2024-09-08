@@ -1,0 +1,15 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.3
+
+[libraries]
+
+linux.debug = "res://nim/decbinhex4/lib/linux/debug/libbootstrap.so"
+windows.debug = "res://nim/decbinhex4/lib/windows/debug/bootstrap.dll"
+
+linux.release = "res://nim/decbinhex4/lib/linux/release/libbootstrap.so"
+windows.release = "res://nim/decbinhex4/lib/windows/release/bootstrap.dll"
+
+[icons]
+MainClass = "res://addons/icons/control_nim.svg"

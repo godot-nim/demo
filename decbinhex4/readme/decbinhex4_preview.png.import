@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7b2vjgt7l6cm"
-path="res://.godot/imported/base_nim_icon.svg-84e56ef8a6c32ce20436eb5a2ca96760.ctex"
+uid="uid://yr3q03ejvga2"
+path="res://.godot/imported/decbinhex4_preview.png-e6433a1aef6664d671a10fcd1f1ff862.ctex"
 metadata={
-"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/icons/base_nim_icon.svg"
-dest_files=["res://.godot/imported/base_nim_icon.svg-84e56ef8a6c32ce20436eb5a2ca96760.ctex"]
+source_file="res://readme/decbinhex4_preview.png"
+dest_files=["res://.godot/imported/decbinhex4_preview.png-e6433a1aef6664d671a10fcd1f1ff862.ctex"]
 
 [params]
 
@@ -33,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=false

@@ -1,7 +1,7 @@
 import gdext
 
 # import your extension classes here
-import src/main_class
+import main_class
 
 # ==================================
 
@@ -13,4 +13,4 @@ process initialize_scene:
   #discard
 
 
-GDExtensionEntryPoint name=init_library
+GDExtensionEntryPoint
