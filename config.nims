@@ -1,3 +1,0 @@
---noNimblePath
---path: "/home/panno/.local/src/github.com/godot-nim/gdext/src"
---path: "/home/panno/.local/src/github.com/godot-nim/gdextgen/src"
