@@ -25,4 +25,5 @@ method ready(self:TestLabelClass) {.gdsync.} =
   if Engine.isEditorHint: return
   self.text = "\n300"
 
-process initialize_scene: register TestLabelClass
+proc register_classes {.execon: initialize_scene.} =
+  register TestLabelClass

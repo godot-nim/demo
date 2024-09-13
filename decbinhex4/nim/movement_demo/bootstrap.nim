@@ -5,7 +5,7 @@ import movement_demo
 
 # ==================================
 
-process initialize_scene:
+proc register_classes {.execon: initialize_scene.} =
   # register your extension classes here
   register PolygonClass
 
