@@ -7,9 +7,11 @@ compatibility_minimum = 4.1
 
 linux.debug = "res://nim/movement_demo/lib/linux/debug/libbootstrap.so"
 windows.debug = "res://nim/movement_demo/lib/windows/debug/bootstrap.dll"
+macos.debug = "res://nim/decbinhex4/lib/macos/debug/libbootstrap.dylib"
 
 linux.release = "res://nim/movement_demo/lib/linux/release/libbootstrap.so"
 windows.release = "res://nim/movement_demo/lib/windows/release/bootstrap.dll"
+macos.release = "res://nim/decbinhex4/lib/macos/release/libbootstrap.dylib"
 
 [icons]
 PolygonClass = "res://addons/icons/polygon_nim.png"
