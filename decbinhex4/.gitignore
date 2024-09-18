@@ -3,3 +3,6 @@
 lib/
 nimble.develop
 nimble.paths
+
+# macOS specific ignores
+**/.DS_Store
