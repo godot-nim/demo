@@ -7,7 +7,7 @@ const
   nonbinary_nums:set[char] = Digits - {'0', '1'}
   msg_input:string = "Waiting for valid input."
 
-type MainClass* = ref object of Control
+type MainClass* = ptr object of Control
   window:Window
   in_node:LineEdit
   out_node:Label

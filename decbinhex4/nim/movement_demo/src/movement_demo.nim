@@ -1,7 +1,7 @@
 import gdext, gdextgen/classes/gdSceneTree
 import gdextgen/classes / [gdInput, gdPolygon2D, gdLabel]
 
-type PolygonClass* = ref object of Polygon2D
+type PolygonClass* = ptr object of Polygon2D
 
 method ready(self:PolygonClass) {.gdsync.} =
   if Engine.isEditorHint: return
@@ -19,7 +19,7 @@ method process(self:PolygonClass, delta: float64) {.gdsync.} =
   if Input.isActionPressed "ui_cancel": self.getTree.quit()
 
 
-type TestLabelClass* = ref object of Label
+type TestLabelClass* = ptr object of Label
 
 method ready(self:TestLabelClass) {.gdsync.} =
   if Engine.isEditorHint: return

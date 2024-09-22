@@ -6,7 +6,7 @@ import gdextgen/classes/gdLabel
 import gdextgen/classes/gdTimer
 import gdextgen/classes/gdInput
 
-type Hud* = ref object of CanvasLayer
+type Hud* = ptr object of CanvasLayer
   ScoreLabel*: Label
   Message*: Label
   StartButton*: Button

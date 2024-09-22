@@ -7,7 +7,7 @@ import gdextgen/classes/gdCollisionShape2D
 
 var screen_size: Vector2
 
-type Player* = ref object of Area2D
+type Player* = ptr object of Area2D
   speed: float32 = 400
   AnimatedSprite2D: AnimatedSprite2D
   CollisionShape2D: CollisionShape2D

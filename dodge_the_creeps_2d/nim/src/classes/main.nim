@@ -15,7 +15,7 @@ import gdextgen/classes/gdPathFollow2D
 import gdextgen/classes/gdRigidBody2D
 import gdextgen/classes/gdAudioStreamPlayer
 
-type Main* = ref object of Node
+type Main* = ptr object of Node
   mob_scene: gdref PackedScene
   score: int
   Player: Player

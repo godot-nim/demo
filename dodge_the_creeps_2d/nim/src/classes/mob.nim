@@ -5,7 +5,7 @@ import gdextgen/classes/gdAnimatedSprite2D
 import gdextgen/classes/gdSpriteFrames
 import gdextgen/classes/gdSceneTree
 
-type Mob* = ref object of RigidBody2D
+type Mob* = ptr object of RigidBody2D
   AnimatedSprite2D: AnimatedSprite2D
   VisibleOnScreenNotifier2D: VisibleOnScreenNotifier2D
 

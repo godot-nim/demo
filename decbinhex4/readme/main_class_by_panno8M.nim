@@ -10,7 +10,7 @@ type
     input: string
     select: Base = Dec
 
-  MainClass* = ref object of Control
+  MainClass* = ptr object of Control
     window: Window
     in_node: LineEdit
     out_node: Label
