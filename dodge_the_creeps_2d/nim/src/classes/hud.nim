@@ -1,10 +1,10 @@
 import gdext
 
-import gdextgen/classes/gdSceneTree
-import gdextgen/classes/gdLabel
-# import gdextgen/classes/gdButton
-import gdextgen/classes/gdTimer
-import gdextgen/classes/gdInput
+import gdext/classes/gdSceneTree
+import gdext/classes/gdLabel
+# import gdext/classes/gdButton
+import gdext/classes/gdTimer
+import gdext/classes/gdInput
 
 type Hud* = ptr object of CanvasLayer
   ScoreLabel*: Label

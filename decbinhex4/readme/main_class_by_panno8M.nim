@@ -1,7 +1,7 @@
 import std/[strutils, strformat]
 import gdext
-import gdextgen/classes/[gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton]
-import gdextgen/classes/gdWindow
+import gdext/classes/[gdSceneTree, gdInput, gdLineEdit, gdLabel, gdBaseButton]
+import gdext/classes/gdWindow
 
 type
   Base {.pure.} = enum

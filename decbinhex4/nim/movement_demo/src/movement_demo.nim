@@ -1,5 +1,5 @@
-import gdext, gdextgen/classes/gdSceneTree
-import gdextgen/classes / [gdInput, gdPolygon2D, gdLabel]
+import gdext, gdext/classes/gdSceneTree
+import gdext/classes / [gdInput, gdPolygon2D, gdLabel]
 
 type PolygonClass* = ptr object of Polygon2D
 

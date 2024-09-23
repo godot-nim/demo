@@ -6,14 +6,14 @@ import player
 import mob
 import hud
 
-import gdextgen/classes/gdSceneTree
-import gdextgen/classes/gdNode
-import gdextgen/classes/gdMarker2D
-import gdextgen/classes/gdTimer
-import gdextgen/classes/gdPackedScene
-import gdextgen/classes/gdPathFollow2D
-import gdextgen/classes/gdRigidBody2D
-import gdextgen/classes/gdAudioStreamPlayer
+import gdext/classes/gdSceneTree
+import gdext/classes/gdNode
+import gdext/classes/gdMarker2D
+import gdext/classes/gdTimer
+import gdext/classes/gdPackedScene
+import gdext/classes/gdPathFollow2D
+import gdext/classes/gdRigidBody2D
+import gdext/classes/gdAudioStreamPlayer
 
 type Main* = ptr object of Node
   mob_scene: gdref PackedScene

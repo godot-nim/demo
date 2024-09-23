@@ -1,5 +1,5 @@
 import gdext
-import gdextgen/classes / [gdLabel]
+import gdext/classes / [gdLabel]
 
 type MyClass* = ptr object of Label
   #types defined here,for instance label_node:Label if class were different node type

@@ -1,5 +1,5 @@
 import std/strutils, pure_convert #[pure_convert.nim, last pure-nim import]#, gdext
-import gdextgen/classes / [gdInput, gdLineEdit, gdLabel, gdBaseButton, gdWindow]
+import gdext/classes / [gdInput, gdLineEdit, gdLabel, gdBaseButton, gdWindow]
 
 const
   hex_letters:set[char] = HexDigits - Digits

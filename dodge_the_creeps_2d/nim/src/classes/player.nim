@@ -1,9 +1,9 @@
 import gdext
-import gdextgen/classes/gdArea2D
-import gdextgen/classes/gdInput
-import gdextgen/classes/gdSceneTree
-import gdextgen/classes/gdAnimatedSprite2D
-import gdextgen/classes/gdCollisionShape2D
+import gdext/classes/gdArea2D
+import gdext/classes/gdInput
+import gdext/classes/gdSceneTree
+import gdext/classes/gdAnimatedSprite2D
+import gdext/classes/gdCollisionShape2D
 
 var screen_size: Vector2
 
