@@ -16,7 +16,7 @@ import gdext/classes/gdRigidBody2D
 import gdext/classes/gdAudioStreamPlayer
 
 type Main* = ptr object of Node
-  mob_scene: gdref PackedScene
+  mob_scene* {.gdexport.}: gdref PackedScene
   score: int
   Player: Player
   MobTimer: Timer
@@ -27,10 +27,6 @@ type Main* = ptr object of Node
   Hud: Hud
   Music: AudioStreamPlayer
   DeathSound: AudioStreamPlayer
-
-`@export`"mob_scene",
-    proc (self: Main): gdref PackedScene = self.mob_scene,
-    proc (self: Main; value: gdref PackedScene) = self.mob_scene = value
 
 proc new_game(self: Main) {.gdsync.} =
   self.score = 0

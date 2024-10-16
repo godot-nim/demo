@@ -8,13 +8,9 @@ import gdext/classes/gdCollisionShape2D
 var screen_size: Vector2
 
 type Player* = ptr object of Area2D
-  speed: float32 = 400
+  speed* {.gdexport.}: float32 = 400
   AnimatedSprite2D: AnimatedSprite2D
   CollisionShape2D: CollisionShape2D
-
-`@export`"speed",
-    proc (self: Player): float32 = self.speed,
-    proc (self: Player; value: float32) = self.speed = value
 
 proc hit*(self: Player): Error {.gdsync, signal.}
 
