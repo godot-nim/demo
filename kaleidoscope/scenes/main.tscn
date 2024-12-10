@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bls5jvm24aihh"]
+
+[node name="main" type="Node2D"]
+
+[node name="KaleidoscopeClass" type="KaleidoscopeClass" parent="."]
