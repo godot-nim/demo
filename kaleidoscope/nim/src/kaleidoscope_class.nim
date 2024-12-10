@@ -22,7 +22,7 @@ type KaleidoscopeClass* = ptr object of Node2D
   counter: int
 
 
-method generateSlices(self: KaleidoscopeClass) =
+proc generateSlices(self: KaleidoscopeClass) =
   let textureSize = self.texture1.unwrapped.getSize()
   for _ in 0 ..< self.slice_count:
     let x = rand(textureSize.x.int - 50)
