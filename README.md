@@ -18,6 +18,8 @@ wizard run*     Info: godot executable found. launching...
 
 `run` command is clever and will start the editor at the first time; after the second time, the game will be run directly.
 
+For more details about `gdextwiz`, see the [document][1].
+
 ### Another way
 
 ```console
@@ -31,3 +33,5 @@ That's it. Have a fun!
 
 godot-nim is currently seeking contributions of demo projects to help users learn how to use the library more specifically and to ensure that the library is working properly.
 If you have examples of ported demos using GDScript or other languages, or applications that are small enough to consist of a few classes, please consider contributing.
+
+[1]: https://github.com/godot-nim/gdext-nim/wiki/gdextwiz
