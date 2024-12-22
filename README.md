@@ -2,7 +2,30 @@
 
 List of demo projects using godot-nim
 
-For more detail, see [wiki](https://github.com/godot-nim/docs/wiki); especially [Run demo projects](https://github.com/godot-nim/docs/wiki/Run-demo-projects).
+## How can I run a demo?
+
+### Recommended
+
+If you installed `gdext-nim` using nimble, `gdextwiz`(a CLI tool) should have been installed with it.
+For example, if you want to run `demo/dodge_the_creep_2d`:
+
+```console
+USER:godot-nim/demo$ gdextwiz run dodge_the_creep_2d
+wizard build-all*     Info: using /***/demo/dodge_the_creeps_2d/project.godot 
+wizard build-all*     Info: build /***/demo/dodge_the_creeps_2d/nim/bootstrap.nim
+wizard run*     Info: godot executable found. launching... 
+```
+
+`run` command is clever and will start the editor at the first time; after the second time, the game will be run directly.
+
+### Another way
+
+```console
+USER:godot-nim/demo$ nim c dodge_the_creeps_2d/nim/bootstrap.nim
+USER:godot-nim/demo$ godot --editor --path dodge_the_creeps_2d
+```
+
+That's it. Have a fun!
 
 ## Contribute
 
