@@ -1,0 +1,16 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.4
+reloadable = true
+
+[libraries]
+
+windows.debug = "res://./nim/lib/DodgeTheCreeps.windows.debug.dll"
+windows.release = "res://./nim/lib/DodgeTheCreeps.windows.release.dll"
+linux.debug = "res://./nim/lib/libDodgeTheCreeps.linux.debug.so"
+linux.release = "res://./nim/lib/libDodgeTheCreeps.linux.release.so"
+macos.debug = "res://./nim/lib/libDodgeTheCreeps.macos.debug.dylib"
+macos.release = "res://./nim/lib/libDodgeTheCreeps.macos.release.dylib"
+web.debug = "res://./nim/lib/libDodgeTheCreeps.web.debug.wasm"
+web.release = "res://./nim/lib/libDodgeTheCreeps.web.release.wasm"

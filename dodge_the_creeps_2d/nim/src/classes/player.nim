@@ -7,7 +7,7 @@ import gdext/classes/gdCollisionShape2D
 
 var screen_size: Vector2
 
-type Player* = ptr object of Area2D
+type Player* {.gdsync.} = ptr object of Area2D
   speed* {.gdexport.}: float32 = 400
   AnimatedSprite2D: AnimatedSprite2D
   CollisionShape2D: CollisionShape2D
@@ -20,7 +20,6 @@ proc start*(self: Player; pos: Vector2) {.gdsync.} =
   self.CollisionShape2D.disabled = false
 
 method ready(self: Player) {.gdsync.} =
-  if Engine.isEditorHint: return
   screen_size = self.getViewportRect().size
   self.AnimatedSprite2D = self/AnimatedSprite2D
   self.CollisionShape2D = self/CollisionShape2D
@@ -29,8 +28,6 @@ method ready(self: Player) {.gdsync.} =
   hide self
 
 method process(self: Player; delta: float64) {.gdsync.} =
-  if Engine.isEditorHint: return
-
   var velocity: Vector2
   if Input.isActionPressed "move_right":
     velocity.*x += 1

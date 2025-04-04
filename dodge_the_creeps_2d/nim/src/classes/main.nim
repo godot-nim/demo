@@ -1,5 +1,3 @@
-import std/random
-
 import gdext
 
 import player
@@ -15,7 +13,7 @@ import gdext/classes/gdPathFollow2D
 import gdext/classes/gdRigidBody2D
 import gdext/classes/gdAudioStreamPlayer
 
-type Main* = ptr object of Node
+type Main* {.gdsync.} = ptr object of Node
   mob_scene* {.gdexport.}: gdref PackedScene
   score: int
   Player: Player
@@ -45,7 +43,6 @@ proc game_over(self: Main) {.gdsync.} =
   self.Hud.show_game_over()
 
 method ready(self: Main) {.gdsync.} =
-  if Engine.isEditorHint: return
   self.Player = self/Player
   self.Hud = self/Hud
   self.MobTimer = self/"MobTimer" as Timer
@@ -74,16 +71,16 @@ proc on_StartTimer_timeout(self: Main) {.gdsync, name: "_on_start_timer_timeout"
 
 proc on_MobTimer_timeout(self: Main) {.gdsync, name: "_on_mob_timer_timeout".} =
   let mob = self.mob_scene[].instantiate as Mob
-  self.MobSpawnLocation.progressRatio = rand(1f)
+  self.MobSpawnLocation.progressRatio = randfRange(0, 1)
 
   var direction = self.MobSpawnLocation.rotation + PI/2
 
   mob.position = self.MobSpawnLocation.position
 
-  direction += rand(-PI/4 .. PI/4)
+  direction += randfRange(-PI/4, PI/4)
   mob.rotation = direction
 
-  var velocity = vector(rand(150f .. 250f), 0f)
+  var velocity = vector(randfRange(150, 250), 0f)
   mob.linearVelocity = velocity.rotated(direction)
 
   self.add_child mob

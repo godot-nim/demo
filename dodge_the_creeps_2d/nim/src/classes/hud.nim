@@ -6,7 +6,7 @@ import gdext/classes/gdLabel
 import gdext/classes/gdTimer
 import gdext/classes/gdInput
 
-type Hud* = ptr object of CanvasLayer
+type Hud* {.gdsync.} = ptr object of CanvasLayer
   ScoreLabel*: Label
   Message*: Label
   StartButton*: Button
@@ -52,7 +52,6 @@ proc on_StartButton_pressed*(self: Hud) {.gdsync, name: "_on_start_button_presse
 
 
 method ready*(self: Hud) {.gdsync.} =
-  if Engine.isEditorHint: return
   self.ScoreLabel = self/"ScoreLabel" as Label
   self.Message = self/"Message" as Label
   self.StartButton = self/"StartButton" as Button
@@ -67,8 +66,6 @@ method ready*(self: Hud) {.gdsync.} =
   discard self.StartButton.connect("pressed", self.callable( "_on_start_button_pressed"))
 
 method process(self: Hud; delta: float64) {.gdsync.} =
-  if Engine.isEditorHint: return
-
   if Input.isActionPressed "ui_cancel": self.getTree.quit()
   if not self.playing: return #no pausing in menu/ready_timer, which have their own message text
   self.Message.text = "Paused"

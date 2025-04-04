@@ -1,5 +1,9 @@
 import gdext/buildconf
 
-Extension.name = "NimMain"
-
 --path: src
+
+let setting = BuildSettings(
+  name: "DodgeTheCreeps",
+)
+
+configure(setting)

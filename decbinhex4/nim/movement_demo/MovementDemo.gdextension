@@ -1,0 +1,20 @@
+[icons]
+
+PolygonClass = "res://addons/icons/polygon_nim.png"
+
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.4
+reloadable = true
+
+[libraries]
+
+windows.debug = "res://./nim/movement_demo/lib/MovementDemo.windows.debug.dll"
+windows.release = "res://./nim/movement_demo/lib/MovementDemo.windows.release.dll"
+linux.debug = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.so"
+linux.release = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.so"
+macos.debug = "res://./nim/movement_demo/lib/libMovementDemo.macos.debug.dylib"
+macos.release = "res://./nim/movement_demo/lib/libMovementDemo.macos.release.dylib"
+web.debug = "res://./nim/movement_demo/lib/libMovementDemo.web.debug.wasm"
+web.release = "res://./nim/movement_demo/lib/libMovementDemo.web.release.wasm"

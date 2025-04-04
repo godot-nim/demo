@@ -122,6 +122,7 @@ width = 4.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="TestLabelClass" type="TestLabelClass" parent="PolygonClass"]
+physics_interpolation_mode = 0
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

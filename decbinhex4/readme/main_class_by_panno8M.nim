@@ -10,7 +10,7 @@ type
     input: string
     select: Base = Dec
 
-  MainClass* = ptr object of Control
+  MainClass* {.gdsync.} = ptr object of Control
     window: Window
     in_node: LineEdit
     out_node: Label
@@ -43,8 +43,6 @@ proc output(self: MainClass; text: string) =
   self.out_node.text = text
 
 method ready(self: MainClass) {.gdsync.} =
-  if Engine.isEditorHint: return
-
   self.window = self.getWindow()
   self.window.minSize = vector2i(325, 225)
   self.window.maxSize = vector2i(960, 480)

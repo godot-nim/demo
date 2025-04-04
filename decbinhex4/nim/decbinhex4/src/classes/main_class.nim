@@ -7,7 +7,7 @@ const
   nonbinary_nums:set[char] = Digits - {'0', '1'}
   msg_input:string = "Waiting for valid input."
 
-type MainClass* = ptr object of Control
+type MainClass* {.gdsync.} = ptr object of Control
   window:Window
   in_node:LineEdit
   out_node:Label
@@ -15,8 +15,6 @@ type MainClass* = ptr object of Control
 
 
 method ready(self:MainClass) {.gdsync.} =
-  if Engine.isEditorHint: return
-
   self.window = self.getWindow();
   self.window.minSize = vector2i(325, 225)
   self.window.maxSize = vector2i(960, 480)

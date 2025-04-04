@@ -1,0 +1,20 @@
+[icons]
+
+MainClass = "res://addons/icons/control_nim.svg"
+
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.4
+reloadable = true
+
+[libraries]
+
+windows.debug = "res://./nim/decbinhex4/lib/Decbinhex4.windows.debug.dll"
+windows.release = "res://./nim/decbinhex4/lib/Decbinhex4.windows.release.dll"
+linux.debug = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.so"
+linux.release = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.so"
+macos.debug = "res://./nim/decbinhex4/lib/libDecbinhex4.macos.debug.dylib"
+macos.release = "res://./nim/decbinhex4/lib/libDecbinhex4.macos.release.dylib"
+web.debug = "res://./nim/decbinhex4/lib/libDecbinhex4.web.debug.wasm"
+web.release = "res://./nim/decbinhex4/lib/libDecbinhex4.web.release.wasm"

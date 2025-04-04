@@ -15,7 +15,7 @@ config/description="A simple example of software made with Godot and Nim-lang bi
 
 Converts numbers to other formats of numbers."
 run/main_scene="res://scenes/main.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://crown_icon.svg"
 
 [display]

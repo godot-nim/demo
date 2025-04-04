@@ -1,5 +1,3 @@
-import random
-
 import gdext
 import gdext/classes/gdNode2D
 import gdext/classes/gdImage
@@ -9,13 +7,13 @@ import gdext/classes/gdResourceLoader
 
 type
   recttwo = object
-    x: int
-    y: int
-    width: int
-    height: int
+    x: Int
+    y: Int
+    width: Int
+    height: Int
 
 
-type KaleidoscopeClass* = ptr object of Node2D
+type KaleidoscopeClass* {.gdsync.} = ptr object of Node2D
   texture1: gdref Texture2D # the picture
   slices: seq[recttwo] # random cuts
   slice_count: int # number mirrors
@@ -25,10 +23,10 @@ type KaleidoscopeClass* = ptr object of Node2D
 proc generateSlices(self: KaleidoscopeClass) =
   let textureSize = self.texture1.unwrapped.getSize()
   for _ in 0 ..< self.slice_count:
-    let x = rand(textureSize.x.int - 50)
-    let y = rand(textureSize.y.int - 50)
-    let width = rand(30..100)
-    let height = rand(30..100)
+    let x = randiRange(0, textureSize.x.Int - 50)
+    let y = randiRange(0, textureSize.y.Int - 50)
+    let width = randiRange(30, 100)
+    let height = randiRange(30, 100)
     var r: recttwo
     r.x = x
     r.y = y
@@ -38,8 +36,7 @@ proc generateSlices(self: KaleidoscopeClass) =
 
 
 method ready(self:KaleidoscopeClass) {.gdsync.} =
-  if Engine.isEditorHint: return
-  random.randomize()
+  randomize()
   self.texture1 = ResourceLoader.load("res://resources/xmasmarket.jpg") as gdref Texture2D
   self.slice_count = 6
   self.generateSlices()
@@ -70,7 +67,6 @@ method draw(self: KaleidoscopeClass) {.gdsync.} =
 
 
 method process(self: KaleidoscopeClass, delta: float64) {.gdsync.} =
-  if Engine.isEditorHint: return
   self.counter += 1
   if self.counter > 20:
     self.generateSlices()
