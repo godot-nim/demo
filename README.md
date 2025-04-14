@@ -2,6 +2,12 @@
 
 List of demo projects using godot-nim
 
+## Projects using gdext-nim
+<!-- TEMPLATES: -->
+<!-- * [gdext-nim version] [yourname/yourrepo](https://path/to/your/repo): summary (optional) -->
+<!-- EXAMPLES: -->
+<!-- * [10.1] [panno8M/Dodge the Creeps 2D](https://github.com/panno8M/dodge-the-creeps-2d): A simple 2D game that to avoid creepy monsters -->
+
 ## How can I run a demo?
 
 ### Recommended
@@ -34,4 +40,7 @@ That's it. Have a fun!
 godot-nim is currently seeking contributions of demo projects to help users learn how to use the library more specifically and to ensure that the library is working properly.
 If you have examples of ported demos using GDScript or other languages, or applications that are small enough to consist of a few classes, please consider contributing.
 
+See [CONTRIBUTING.md][2] for more details.
+
 [1]: https://github.com/godot-nim/gdext-nim/wiki/gdextwiz
+[2]: https://github.com/godot-nim/demo/blob/main/CONTRIBUTING.md
