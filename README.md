@@ -5,6 +5,7 @@ List of demo projects using godot-nim
 ## Projects using gdext-nim
 <!-- TEMPLATES: -->
 <!-- * [gdext-nim version] [yourname/yourrepo](https://path/to/your/repo): summary (optional) -->
+* [0.10.1] [FlanGrande/ChipNim-8](https://github.com/FlanGrande/ChipNim-8): Chip-8 Emulator
 <!-- EXAMPLES: -->
 <!-- * [10.1] [panno8M/Dodge the Creeps 2D](https://github.com/panno8M/dodge-the-creeps-2d): A simple 2D game that to avoid creepy monsters -->
 
