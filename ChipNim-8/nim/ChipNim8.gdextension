@@ -1,0 +1,16 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.4
+reloadable = true
+
+[libraries]
+
+windows.debug = "res://./nim/lib/ChipNim8.windows.debug.dll"
+windows.release = "res://./nim/lib/ChipNim8.windows.release.dll"
+linux.debug = "res://./nim/lib/libChipNim8.linux.debug.so"
+linux.release = "res://./nim/lib/libChipNim8.linux.release.so"
+macos.debug = "res://./nim/lib/libChipNim8.macos.debug.dylib"
+macos.release = "res://./nim/lib/libChipNim8.macos.release.dylib"
+web.debug = "res://./nim/lib/libChipNim8.web.debug.wasm"
+web.release = "res://./nim/lib/libChipNim8.web.release.wasm"

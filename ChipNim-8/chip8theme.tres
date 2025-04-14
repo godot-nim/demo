@@ -1,0 +1,99 @@
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://boe52symcx6jd"]
+
+[sub_resource type="SystemFont" id="SystemFont_v5i1u"]
+font_names = PackedStringArray("Monocraft")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoh5h"]
+bg_color = Color(1, 0.533333, 0, 1)
+expand_margin_left = 16.0
+expand_margin_right = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5i1u"]
+bg_color = Color(1, 0.533333, 0, 1)
+expand_margin_left = 16.0
+expand_margin_right = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3lyb"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5b0b"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_8sl0j"]
+font_names = PackedStringArray("Monocraft")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vpf1"]
+bg_color = Color(1, 0.309804, 0.478431, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gisg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y03sm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxe4y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h8i3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="SystemFont" id="SystemFont_ivu2r"]
+font_names = PackedStringArray("Monocraft")
+font_weight = 600
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivu2r"]
+bg_color = Color(1, 0.533333, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sl0j"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(1, 0.533333, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ivu2r"]
+color = Color(1, 0.533333, 0, 1)
+grow_begin = 16.0
+grow_end = 16.0
+thickness = 2
+vertical = true
+
+[resource]
+Button/colors/font_color = Color(1, 0.533333, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 0)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/constants/h_separation = 0
+Button/font_sizes/font_size = 12
+Button/fonts/font = SubResource("SystemFont_v5i1u")
+Button/styles/focus = SubResource("StyleBoxFlat_xoh5h")
+Button/styles/hover = SubResource("StyleBoxFlat_v5i1u")
+Button/styles/normal = SubResource("StyleBoxFlat_t3lyb")
+Button/styles/pressed = SubResource("StyleBoxFlat_s5b0b")
+CheckButton/colors/font_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_focus_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_hover_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+CheckButton/font_sizes/font_size = 14
+CheckButton/fonts/font = SubResource("SystemFont_8sl0j")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_2vpf1")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_2gisg")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_y03sm")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_uxe4y")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_0h8i3")
+GridContainer/constants/h_separation = 0
+GridContainer/constants/v_separation = 0
+Label/colors/font_color = Color(1, 0.501961, 0, 1)
+Label/font_sizes/font_size = 14
+Label/fonts/font = SubResource("SystemFont_ivu2r")
+MarginContainer/constants/margin_bottom = 16
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 16
+MarginContainer/constants/margin_top = 16
+Panel/styles/panel = SubResource("StyleBoxFlat_ivu2r")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_8sl0j")
+VBoxContainer/constants/separation = 0
+VSeparator/constants/separation = 0
+VSeparator/styles/separator = SubResource("StyleBoxLine_ivu2r")

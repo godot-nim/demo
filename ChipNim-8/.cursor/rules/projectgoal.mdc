@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Context files:
+
+@chip8.nim
+@globals.nim
+[opcodes.nim](mdc:chip8/opcodes.nim)
+
+The main goal of our project is to integrate a Chip-8 emulator programmed in Nim into the Godot Engine.
+The way the project works is we will embed the emulator into Godot by rendering it in a SubViewport.
+
+The tech stack used uses Nim, Godot Engine and a GDExtension called godot-nim, for which documentation will be provided.
+A GDExtension serves as a bridge between Godot Engine and a foreign language, like C or, in this case Nim.
+
+This means we WON'T use GDScript at all. All code must be written in Nim using godot-nim or gdext classes.
+
+
+The final resulting program will use Godot Engine as a kind of UI engine to then create a UI around the Emulator for loading ROMs and displaying debugging information like the state of the emulator.
+
+
+# Important
+Never complete any task that you haven't been explicitly asked for. E.g. do not fix issues unless requested.
