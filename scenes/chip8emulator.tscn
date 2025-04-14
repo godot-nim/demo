@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dvx4owakyry2b"]
+
+[node name="Chip8Emulator" type="Chip8Emulator"] 

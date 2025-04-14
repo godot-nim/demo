@@ -1,0 +1,47 @@
+// .vscode/tasks.json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "nim: build (for debugging)",
+            "command": "nim",
+            "args": [
+                "compile",
+                "--debugger:native",
+                "--debuginfo:on",
+                "--linedir:on",
+                "--stacktrace:on",
+                "-o:${workspaceFolder}/bin/ChipNim8",
+                "ChipNim8.nim"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "type": "shell"
+        },
+        {
+            "label": "gdext: build on save",
+            "command": "gdextwiz",
+            "args": [
+                "build"
+            ],
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "runOptions": {
+                "runOn": "onSave"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
