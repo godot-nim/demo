@@ -1,0 +1,3 @@
+[submodule "ChipNim-8/roms"]
+	path = ChipNim-8/roms
+	url = https://github.com/kripod/chip8-roms

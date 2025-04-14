@@ -1,0 +1,606 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# The following are references to look at when programming in godot-nim:
+
+# Coding Quick Guide
+
+## Your Node Class
+
+You can’t attach a nim-script to a node – you have to create and register classes (like with `class_name`) using a Nim type. You'll then be able to add it to your scene like the builtin nodes. Add your class-level variables to the type. Use the pragma `{.gdexport.}` to make them accessible in the inspector.
+
+```nim
+type MyClass* {.gdsync.} = ptr object of Node3D
+	score :int = 0
+	mob_scene* {.gdexport.} :GdRef[PackedScene]
+	player* {.gdexport.} :Node3D
+```
+
+You can reference the datatypes of all Godot classes as long as you’ve imported gdext, but in order to use their methods and properties you need to import the actual class, which are located in `gdext/classes/` with the names beginning with `gd`.
+
+```nim
+import gdext/classes/[gdNode3D]
+```
+
+For your class you’ll mostly want to create routines which take as their first argument the type of your class. If you’re overloading a routine then it needs to be a **method** and not start with `_`. The `gdsync` pragma is required.
+
+```nim
+method ready(self :MyClass) {.gdsync.} = discard
+
+proc do_thing(self :MyClass) {.gdsync.} = discard
+```
+
+Your code will run in the editor as well (like when using the `@tool` annotation). Use `Engine.isEditorHint` to decide what code should run in the editor, and what in the game.
+
+```nim
+method process(self :MyClass, delta :float) {.gdsync.} =
+	if Engine.isEditorHint:
+		return
+	# the following code will not run in the editor
+```
+
+---
+
+## Special `onInit`, `onDestroy` Method
+
+Since Nim does not have a standard constructor or destructor mechanism, **gdext-nim** adds new `onInit` and `onDestroy` methods. These methods are often needed to initialize and release arguments.
+
+```nim
+type MyNode* {.gdsync.} = ptr object of Node
+	values* {.gdexport.}: TypedArray[Int]
+	timer: Timer
+
+method onInit(self: MyNode) =
+	self.values = typedArray
+	for i in 0..<self.values.len:
+		self.values[i] = i * 10
+	self.timer = instantiate Timer
+
+method onDestroy(self: MyNode) =
+	destroy self.timer
+```
+
+---
+
+## The `{.gdsync.}` Pragma
+
+You have probably been confused by the strange `{.gdsync.}` pragmas that have appeared in various places in the examples so far. Once here, I will summarize the role of this strange pragma and where it can be used.
+
+The role of the `{.gdsync.}` pragma, as can be inferred from its name, is to **communicate and synchronize** the data to which the pragma is attached to the engine. Attaching this pragma makes it visible to scripts or be called as a callback, and so on.
+
+The `{.gdsync.}` pragma can be attached to the following places:
+
+1. **Class definition**  
+   Expose the class to the engine so it can be treated like a built-in class like Node or Resource.
+   ```nim
+   type MyNode {.gdsync.} = ptr object of Node
+   ```
+2. **Procedure definition / Method overriding**  
+   ```nim
+   proc myProc(self: MyNode) {.gdsync.} = print "Hello, GDExtension! from myProc"
+   method ready(self: MyNode) {.gdsync.} = print "Hello, GDExtension! from ready"
+   ```
+3. **Signal definition**  
+   See [Signals](mdc:#signals)
+   ```nim
+   proc mySignal(self: MyNode): Error {.gdsync, signal.}
+   ```
+4. **Virtual method definition**  
+   See [Virtual methods](mdc:#virtual-methods)
+
+---
+
+## Available Types
+
+There are restrictions on the types that can be used for properties and function arguments and return values. The available types are listed below:
+
+- **Godot built-in types**  
+  `String`, `Quaternion`, `Callable`, `Variant`, `TypedArray`, `PackedArray`, etc.  
+  `Vector2`, `Vector3`, etc.  
+  > Note: Since these vector types are actually Nim arrays, 2–4 element int/float32 arrays are also available.
+
+- **Godot classes**  
+  `Object`, `RefCounted`, `Node`, etc.  
+  `GdRef[RefCounted]`  
+  > Note: Objects inheriting from `RefCounted` are not used as-is, but are wrapped in a special ref type called `GdRef`.
+
+- **Basic Nim types**  
+  `SomeNumber`  
+  `enum`, `set[enum]`  
+  > Note: `enum` is treated as just an int by Godot. It is recommended to use the `bind` macro together.
+
+  `string`  
+  `range[SomeInteger]`
+
+- **Extension classes**  
+  > Note: A `ptr object` that inherits from the Godot or extension class and is registered with the engine using `{.gdsync.}` or `register`.
+
+---
+
+## Using Nodes and Godot Types and Routines
+
+Builtin global functions have the same names. Types like `Vector3` etc. do not need to be imported and work like in GDScript, but the constructor is lower case and names are technically Capitalized instead of UPPERCASE – Nim of course allows uppercase anyway.
+
+```nim
+self.position = vector3(0, 0, 0) + Vector3.Down + Vector3.DOWN
+print self.position.length
+```
+
+You can fetch nodes from the scene-tree (like with dollar-sign `$`) using special syntax, or using `getNode`. Note that you need to specify its type.
+
+```nim
+let node = self/"Path"/"to"/"Node" as Sprite2D
+let other_node = self.getNode("Path/to/ThisNode") as MeshInstance3D
+```
+
+Create new instances of nodes using `instantiate`, with an optional name for the node.
+
+```nim
+let node :Node3D = Node3D.instantiate "some name"
+node.position = vector3(0, 0, 3)
+self.add_child(node)
+```
+
+Builtin enums are slightly different, for instance `Mesh_PrimitiveType.primitiveTriangles` instead of `Mesh.PRIMITIVE_TRIANGLES`. Look for them in `gdext/gen/globalenums.nim` and `gdext/gen/localenums.nim`.
+
+---
+
+### Object or RefCounted
+
+Nodes, and some other things, ultimately inherit from `Object` and their types are simple. Others inherit from `RefCounted` which means they're encapsulated with `GdRef`. If you need access to the plain datatype without `GdRef` they can be dereferenced with `[]`.
+
+```nim
+let mi :MeshInstance = instantiate MeshInstance # Object type
+let st :GdRef[SurfaceTool] = instantiate SurfaceTool # RefCounted type
+st[].begin(primitiveTriangles) # st needs dereferencing
+# ...
+let m :GdRef[ArrayMesh] = st[].commit()
+mi.mesh = m as GdRef[Mesh] # Casting to super type
+```
+
+Another example is the method `input` which takes the `RefCounted InputEvent` as event. The type needs to be encapsulated and the variable needs to be dereferenced. Also, don’t forget to import the actual class `gdInputEvent` to access its methods and properties.
+
+```nim
+method input(self :MyClass, event :GdRef[InputEvent]) {.gdsync.} =
+	if event[].is_action_pressed("move_forward"):
+		# ...
+```
+
+---
+
+### Life of Object
+
+Any class that extends `Object` (even those defined by you) can be instantiated using `instantiate`. **Do not** use the constructor that Nim provides by default, as it cannot request the engine to create the actual class.
+
+```nim
+type MyNode = ptr object of Node
+
+var obj: Object = instantiate Object
+var refcounted: GdRef[RefCounted] = instantiate RefCounted
+var mynode: MyNode = instantiate(MyNode, "My Node")
+```
+
+Object types are not garbage-collected. If the following conditions are not met, release them manually using `destroy`:
+
+1. The target is a derived class of `RefCounted`.
+2. Already calling `Node.addNode`, etc. and letting the engine manage the object.
+
+```nim
+destroy obj
+destroy mynode
+```
+
+---
+
+## Signals
+
+Signals are identified using string names and so are the functions that connect to them. You’ll then need to use the `name` pragma to give the called function its string name. The function string name can be any pattern.
+
+```nim
+method ready(self :MyClass) {.gdsync.} =
+	discard self.connect("visibility_changed", self.callable("_on_visibility_changed"))
+
+proc on_visibility_changed(self :MyClass) {.gdsync, name: "_on_visibility_changed".} =
+	print $self, " visibility: ", self.visible
+```
+
+To create your own signals, define a routine signature (no body) and add the pragma `signal`. It must have the return type `Error`.
+
+```nim
+proc game_over*(self :MyClass, score :int) :Error {.gdsync, signal.}
+```
+
+You can now activate (emit) the signal by simply calling the routine:
+
+```nim
+discard self.connect("game_over", self.callable("_on_game_over"))
+discard self.game_over(234)
+```
+
+---
+
+## Properties
+
+### Export properties
+
+There are 3 ways (levels) to export a property:
+
+1. `{.gdexport.}`
+2. `gdexport(Class.property)`
+3. `gdexport("name", getter, setter)`
+
+#### 1. `{.gdexport.}`
+
+In most cases, this syntax is sufficient. When defining types, simply export (with `*`) the properties you wish to expose and mark them with the `{.gdexport.}` pragma.
+
+```nim
+type WorldMakerNode* = ptr object of Node3D
+	active* {.gdexport.} :bool
+```
+
+Again, remember the `*`.
+
+#### 2. `gdexport(Class.property)`
+
+It is not much different from the pragma version, but allows hacks such as publishing only to GDScript without publishing to other Nim modules (By omitting `*`).
+
+```nim
+type WorldMakerNode* = ptr object of Node3D
+	active :bool
+
+gdexport WorldMakerNode.active
+```
+
+#### 3. `gdexport("name", getter, setter)`
+
+This is the lowest-level definition method; use it when you want to customize the behavior of a getter and a setter. You have to define both of them. Do note the comma `,`.
+
+```nim
+type WorldMakerNode* = ptr object of Node3D
+	active :bool
+
+gdexport "active",
+	proc (self :MyClass) :bool = self.active,
+	proc (self :MyClass, val :bool) = self.active = val
+```
+
+For larger routines it may be preferable to define the routines separately and then register them. In this case remember to use the `gdsync` pragma.
+
+```nim
+proc get_active(self :MyClass) :bool {.gdsync.} =
+	# ...
+	self.active
+
+proc set_active(self :MyClass, val :bool) {.gdsync.} =
+	# ...
+	self.active = val
+
+gdexport "active", get_active, set_active
+```
+
+---
+
+### Customize property appearances
+
+Additional **Appearance** objects can be passed to `gdexport`; `Appearance` has several constructors, each corresponding to `@export_XXX` in GDScript.
+
+For example, to represent:
+
+```gdscript
+@export_range(0, 100, 5) var x: int
+```
+
+in **gdext**, do below:
+
+```nim
+type TestNode* {.gdsync.} = ptr object of Node
+	property* {.gdexport: Appearance.range(0, 100, 5).}: int
+```
+
+Or:
+
+```nim
+type TestNode* {.gdsync.} = ptr object of Node
+	property* : int
+
+gdexport "property",
+	proc(self: TestNode): int = self.property,
+	proc(self: TestNode; value: int) = self.property = value,
+	Appearance.range(0, 100, 5)
+```
+
+See also:
+
+- [GDScript exported properties](mdc:https:/docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_exports.html)
+
+---
+
+## Virtual Methods
+
+New virtual function definitions are supported starting with 0.4.0. The following operations are **not** supported:
+
+- Calling virtual functions defined in Nim from GDScript without overriding them in itself
+
+Register the base method with Godot by marking the method with the `{.gdsync, base.}` pragma. Default behavior can be set for virtual functions.
+
+```nim
+# gdvirtualnode01.nim
+import gdext
+
+type VirtualNode01* = ptr object of Node
+
+method virtualMethod*(self: VirtualNode01; str: string): string {.gdsync, base.} =
+	"virtualMethod of VirtualNode01 is called " & str
+```
+
+Override as well as engine built-in methods such as `ready`.
+
+```nim
+# gdvirtualnode02.nim
+import gdext
+import gdvirtualnode01
+
+type VirtualNode02* = ptr object of VirtualNode01
+
+method virtualMethod*(self: VirtualNode02; str: string): string {.gdsync.} =
+	"virtualMethod of VirtualNode02 is called " & str
+```
+
+The name you define will be published in the GDScript as is. A way to alias this has not yet been implemented.
+
+```gdscript
+# inherited_node01.gd
+extends VirtualNode01
+
+func virtualMethod(str: String) -> String:
+	return "virtualMethod of InheritedNode01 is called " + str
+```
+
+```gdscript
+# inherited_node02.gd
+extends VirtualNode02
+
+func virtualMethod(str: String) -> String:
+	return "virtualMethod of InheritedNode02 is called " + str
+```
+
+Virtual function calls can be made in the same way as in the Nim standard. If overridden, the process is executed; otherwise, the default process is executed.
+
+```nim
+assert (self/"VirtualNode01" as VirtualNode01).virtualMethod("from Nim Source") ==
+	"virtualMethod of VirtualNode01 is called from Nim Source"
+assert (self/"InheritedNode01" as VirtualNode01).virtualMethod("from Nim Source") ==
+	"virtualMethod of InheritedNode01 is called from Nim Source"
+assert (self/"VirtualNode02" as VirtualNode01).virtualMethod("from Nim Source") ==
+	"virtualMethod of VirtualNode02 is called from Nim Source"
+assert (self/"InheritedNode02" as VirtualNode01).virtualMethod("from Nim Source") ==
+	"virtualMethod of InheritedNode02 is called from Nim Source"
+```
+
+---
+
+## Enums and Bitfields
+
+The `bind` macro can be used to bind enums to a class and tell the engine that enums exist. Bound enums can be used from scripts in the same way as constants such as `Vector2.AXIS_X`. The `bind` macro behaves differently if you pass an enum or `set[enum]`:  
+- If you pass an enum, the enum is passed to the engine as is.  
+- If you pass `set[enum]`, the enum is passed as a bit field.
+
+### Example:
+
+```nim
+type
+	TestNode* {.gdsync.} = ptr object of Node
+		testEnum* {.gdexport.}: TestEnum
+		testFlags* {.gdexport.}: set[TestFlags] = {TestFlagA}
+
+	TestEnum* = enum
+		# Values in Editor:
+		TestEnumA       # TestNode.TestEnumA = 0
+		TestEnumB = 2   # TestNode.TestEnumB = 2
+		TestEnumC       # TestNode.TestEnumC = 3
+
+	TestFlags* = enum
+		# Values in Editor:
+		TestFlagA        # TestNode.TestFlagA = 1
+		TestFlagB = 2    # TestNode.TestFlagB = 4
+		TestFlagC        # TestNode.TestFlagC = 8
+
+TestNode.bind TestEnum           # => exports TestEnum as TestNode.TestEnum (enum)
+TestNode.bind set[TestFlags]     # => exports TestFlags as TestNode.TestFlags (flags)
+```
+
+This will result in the following two values being equal:
+
+```nim
+TestNode.TestFlagA | TestNode.TestFlagC # gdscript
+{TestFlagA, TestFlagC}                  # nim
+```
+
+To summarize briefly, if you want to use the defined enum as a `set[enum]` for properties, arguments, etc., bind it as `set[enum]`.
+
+---
+
+## Variant
+
+In gdext, Variants can be created using the `variant()` constructor.
+
+```nim
+var key = variant "key"
+var dict = variant dictionary()
+```
+
+`variant()` can be used for the following types:
+
+- Built-in types defined by Godot such as `Int`, `Float`, `Vector2`, `String`, `Dictionary` and `Object`
+- Primitive types commonly used in Nim, such as `int32`, `string`, and `enum`
+
+To retrieve a value from a `Variant`, use `Variant.get(typedesc)`.
+
+```nim
+dict.get(Dictionary)[key] = 1
+assert dict["key"].get(int) == 1
+```
+
+---
+
+## Loading Resources
+
+In GDScript, we could use `preload` or `load` to load a resource. However, the GDExtension libraries, including gdext-nim, do not make these methods available; `ResourcePreloader` and `ResourceLoader` classes are used instead.
+
+To see how to use those, please refer to the official documentation:
+
+- [ResourcePreloader](mdc:https:/docs.godotengine.org/en/stable/classes/class_resourcepreloader.html)
+- [ResourceLoader](mdc:https:/docs.godotengine.org/en/stable/classes/class_resourceloader.html)
+
+---
+
+## Access String Elements / What is Rune?
+
+The elements of a `String` are of type `Rune`, not of type `char`. This is a data type defined in `std/unicode` and must be imported manually as **gdext** does not export this module.
+
+---
+
+## Output Text – `print`? `echo`?
+
+There are a total of four print functions in gdext, provided by Nim and Godot respectively.
+
+- **Nim**:  
+  `echo`
+- **Godot**:  
+  `print`  
+  `printerr`  
+  `print_rich`
+
+The `echo` outputs characters **only** to the console, and all others to both the editor’s Output window and the console. Like `echo`, the `print` series works well by simply arranging the contents to be output.
+
+```nim
+let result = variant(3)
+print 1, " + ", 2, " = ", result
+```
+
+---
+
+## Hot Reloading
+
+In order to enable hot reloading in the Godot Editor you have to set `reloadable` to `true` in your **.gdextension** file under the configuration section. It will reload when the editor gains focus again after your extension is compiled.
+
+```
+[configuration]
+; ...
+reloadable = true
+```
+
+---
+
+## Editor Help / Documentation
+
+> **Note**  
+> This feature is a bit of an overhead as they are re-generated each time at runtime. If you do not need this function, please disable it. It can be disabled in `config.nims`.
+> 
+> ```nim
+> # config.nims
+> import gdext/buildconf
+> 
+> Assistance.genEditorHelp = off # on is default
+> ```
+
+Using some of the methods described below, you can write a description that will appear in the class reference on the editor.
+
+1. **`{.description: "Description here".}` pragma**  
+   Available for class/method/proc/signal definition
+
+2. **`description = "Description here"` argument**  
+   Available for `gdexport` templates
+
+3. **`## Description here` documentation comment**  
+   Available for method/proc definition
+
+### Example:
+
+```nim
+import gdext
+
+type DocTestNode* {.gdsync, description: """
+A node defined for documentation testing.
+"## comments" are ignored because there is no way to retrieve them.
+"".} = ptr object of Node
+	pragma_param* {.gdexport, description: "This is a description for {.gdexport.}'ed params".}: string = "pragma-param"
+	getset_param: string = "getset-param"
+
+gdexport "getset_param",
+	proc(self: DocTestNode): string = self.getset_param,
+	proc(self: DocTestNode; value: string) = self.getset_param = value,
+	description = "This is a description for gdexport(getter, setter)'ed params"
+
+proc signalWithDescription*(self: DocTestNode): Error {.gdsync, signal, description: """
+This is a description for Signal.
+""".}
+
+proc procWithNoDocComments(self: DocTestNode): string {.gdsync.} =
+	"doctest"
+
+proc procWithDescription(self: DocTestNode): string {.gdsync, description: """
+This is a description for Proc that provided by pragma
+"".} =
+	"doctest"
+
+proc procWithDocComments(self: DocTestNode): string {.gdsync.} =
+	## Just returns String "doctest"
+	## Note that as same as `nim doc`, very first doc-comment is only applied.
+	## Additionally, runnableExamples will also be ignored.
+	## The ability to convert reStructuredText to Godot.RichText is not implemented.
+	runnableExamples:
+		"doctest"
+	result = "doctest"
+	## IGNORED
+
+	## IGNORED
+
+proc procWithDescriptionAndComment(self: DocTestNode): string {.gdsync, description: """
+If both {.description.} and ## description is provided,
+{.description.} will only be used.
+"".} =
+	## Descriptions here will be ignored from Godot Editor.
+	## Though if you do `nim doc`, of course this part will placed on documentation.
+	"doctest"
+```
+
+---
+
+## BuildSettings in Your Extension
+
+*(related to Build, Configure and Export your project)*
+
+**Platforms, targets, and architectures** put in `config.nims` can be referenced from within the extension. This can be used, for example, to skip checks during release builds or to restrict property values during editor builds.
+
+```nim
+import gdext
+
+type MyNode* {.gdsync.} = ptr object of Node
+	range_property: int
+	array_property: Array
+
+proc get_range_property(self: MyNode): int {.gdsync.} =
+	self.range_property
+
+proc set_range_property(self: MyNode; value: int) {.gdsync.} =
+	case BuildSettings.target
+	of release:
+		self.range_property = value
+	of debug:
+		if value notin 0..10:
+			printerr "the value ", value, " is not in [0, 10]!"
+		self.range_property = value.clamp(0, 10)
+	of editor:
+		self.range_property = value.clamp(0, 10)
+
+gdexport "range_property",
+	get_range_property,
+	set_range_property
+```
+
+---
+
+**End of Quick Guide**

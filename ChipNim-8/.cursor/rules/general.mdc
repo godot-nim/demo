@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Don't include obvious comments that describe what the code do. Example:
+
+``` nim
+# Adds two numbers and assign  jrrto a new variable
+var c = a + b
+```
+
+If you add comments, they are to explain WHY the code is designed that way, not what it does.
