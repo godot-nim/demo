@@ -14,7 +14,7 @@ Add your project to demo/README; when gdext-nim is updated, you will receive a r
 1. Add to the `Projects using gdext-nim` section of the cloned/README, create a commit, and push it.
 1. Visit godot-nim/demo, you should see a popup to create a pull request. Create a PR as you go.
 
-## Maintenance for updates to gdext-nim and Godot Engine
+### Maintenance for updates to gdext-nim and Godot Engine
 
 Please update the version info in demo/README when you migrate to the latest version.
 Star godot-nim/gdext-nim to receive notification when a new version is released. If you wish, we can send reports on deprecated or replaced features to Issues in your project; just mention it in your PR.
@@ -32,6 +32,8 @@ This is recommended if you do not update your project very often.
 ### Initial work
 
 1. Create CREDITS or LICENSE to let people know who the project belongs.
+1. Include the name of the author(s) in the README.
+1. If special preparation is required to execute the project, this should be noted in the README.
 1. Fork https://github.com/godot-nim/demo and clone it.
 1. Execute the following command in the cloned repository.
    ```console
@@ -59,7 +61,7 @@ This is recommended if you do not update your project very often.
 1. Commit and push your changes.
 1. Visit godot-nim/demo, you should see a popup to create a pull request. Create a PR as you go.
 
-## Maintenance for updates to gdext-nim and Godot Engine
+### Maintenance for updates to gdext-nim and Godot Engine
 
 No need, the godot-nim development team will do it for you.
 
