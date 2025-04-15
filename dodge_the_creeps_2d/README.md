@@ -1,6 +1,6 @@
 # "Dodge the Creeps! 2D" with godot-nim
 
-**Author(s):**: la.panon.(@panno8M)
+**Author(s):**: [la.panon.](https://github.com/panno8M)
 
 <img align="right" src="art/dtc2d_preview.png" alt="A small and lonely creature trying its best to survive by avoiding a sea of other strange creatures."/>
 
