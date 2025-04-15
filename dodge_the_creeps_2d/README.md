@@ -1,5 +1,7 @@
 # "Dodge the Creeps! 2D" with godot-nim
 
+**Author(s):**: la.panon.(@panno8M)
+
 <img align="right" src="art/dtc2d_preview.png" alt="A small and lonely creature trying its best to survive by avoiding a sea of other strange creatures."/>
 
 This is a “reinventing the wheel” of [Your first 2D game][1] using gdext. That document contains the full implementation of the GDScript version. It will be easier to understand if you read it in comparison.

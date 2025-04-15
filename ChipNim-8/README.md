@@ -1,5 +1,7 @@
 # Chip'N'im-8: A Chip-8 Emulator in Nim for Godot
 
+**Author(s):** Flan(@FlanGrande)
+
 Chip'N'im-8 (pronounced Chip 'N' Nim 8) is a Chip-8 emulator implemented in Nim and integrated with Godot Engine.
 
 ## Features
