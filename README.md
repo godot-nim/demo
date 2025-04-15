@@ -5,9 +5,9 @@ List of demo projects using godot-nim
 ## Projects using gdext-nim
 <!-- TEMPLATES: -->
 <!-- * [gdext-nim version] [yourname/yourrepo](https://path/to/your/repo): summary (optional) -->
-* [0.10.1] [FlanGrande/ChipNim-8](https://github.com/FlanGrande/ChipNim-8): Chip-8 Emulator
 <!-- EXAMPLES: -->
-<!-- * [10.1] [panno8M/Dodge the Creeps 2D](https://github.com/panno8M/dodge-the-creeps-2d): A simple 2D game that to avoid creepy monsters -->
+<!-- * [0.10.1] [panno8M/Dodge the Creeps 2D](https://github.com/panno8M/dodge-the-creeps-2d): A simple 2D game that to avoid creepy monsters -->
+* [0.10.1] [FlanGrande/ChipNim-8](https://github.com/FlanGrande/ChipNim-8): Chip-8 Emulator
 
 ## How can I run a demo?
 
@@ -42,6 +42,10 @@ godot-nim is currently seeking contributions of demo projects to help users lear
 If you have examples of ported demos using GDScript or other languages, or applications that are small enough to consist of a few classes, please consider contributing.
 
 See [CONTRIBUTING.md][2] for more details.
+
+## Copyright
+
+This repository is made possible by the contributions of many people who have contributed projects. Therefore, licensing and copyright holders vary for each demo project.
 
 [1]: https://github.com/godot-nim/gdext-nim/wiki/gdextwiz
 [2]: https://github.com/godot-nim/demo/blob/main/CONTRIBUTING.md
