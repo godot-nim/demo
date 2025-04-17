@@ -1,0 +1,16 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.4
+reloadable = true
+
+[libraries]
+
+windows.debug = "res://./nim/nimmain/lib/Nimmain.windows.debug.dll"
+windows.release = "res://./nim/nimmain/lib/Nimmain.windows.release.dll"
+linux.debug = "res://./nim/nimmain/lib/libNimmain.linux.debug.so"
+linux.release = "res://./nim/nimmain/lib/libNimmain.linux.release.so"
+macos.debug = "res://./nim/nimmain/lib/libNimmain.macos.debug.dylib"
+macos.release = "res://./nim/nimmain/lib/libNimmain.macos.release.dylib"
+web.debug = "res://./nim/nimmain/lib/libNimmain.web.debug.wasm"
+web.release = "res://./nim/nimmain/lib/libNimmain.web.release.wasm"

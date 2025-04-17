@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=4 uid="uid://cf5xddc7r1jmb"]
 
-[ext_resource type="PackedScene" uid="uid://bdeyfx2irobub" path="res://scenes/player.tscn" id="1_48qdk"]
-[ext_resource type="PackedScene" uid="uid://bjiir6365pusj" path="res://scenes/mob.tscn" id="1_dv8tf"]
-[ext_resource type="PackedScene" uid="uid://b3md3blfvavtg" path="res://scenes/hud.tscn" id="3_df3un"]
-[ext_resource type="AudioStream" uid="uid://j7csavgijafv" path="res://art/gameover.wav" id="5_fnduv"]
+[ext_resource type="PackedScene" uid="uid://cq6i6inxb1n1l" path="res://player.tscn" id="1_48qdk"]
+[ext_resource type="PackedScene" uid="uid://bjiir6365pusj" path="res://mob.tscn" id="1_dv8tf"]
+[ext_resource type="PackedScene" uid="uid://b3md3blfvavtg" path="res://hud.tscn" id="3_df3un"]
+[ext_resource type="AudioStream" uid="uid://dicr0cldyfjek" path="res://art/gameover.wav" id="5_fnduv"]
 
 [sub_resource type="Curve2D" id="Curve2D_bcl8p"]
 _data = {

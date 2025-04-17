@@ -1,8 +1,8 @@
 import gdext
 
-import player
-import mob
-import hud
+import classes/gdPlayer
+import classes/gdMob
+import classes/gdHud
 
 import gdext/classes/gdSceneTree
 import gdext/classes/gdNode
@@ -26,25 +26,25 @@ type Main* {.gdsync.} = ptr object of Node
   Music: AudioStreamPlayer
   DeathSound: AudioStreamPlayer
 
-proc new_game(self: Main) {.gdsync.} =
+proc newGame(self: Main) {.gdsync, name: "new_game".} =
   self.score = 0
   self.Player.start(self.StartPosition.position)
   start self.StartTimer
   play self.Music
-  self.Hud.update_score(self.score)
-  self.Hud.show_get_ready()
+  self.Hud.updateScore(self.score)
+  self.Hud.showGetReady()
   self.getTree.callGroup("mobs", "queue_free")
 
-proc game_over(self: Main) {.gdsync.} =
+proc gameOver(self: Main) {.gdsync, name: "game_over".} =
   stop self.ScoreTimer
   stop self.MobTimer
   stop self.Music
   play self.DeathSound
-  self.Hud.show_game_over()
+  self.Hud.showGameOver()
 
 method ready(self: Main) {.gdsync.} =
-  self.Player = self/Player
-  self.Hud = self/Hud
+  self.Player = self/"Player" as Player
+  self.Hud = self/"Hud" as Hud
   self.MobTimer = self/"MobTimer" as Timer
   self.ScoreTimer = self/"ScoreTimer" as Timer
   self.StartTimer = self/"StartTimer" as Timer
@@ -53,23 +53,23 @@ method ready(self: Main) {.gdsync.} =
   self.Music = self/"Music" as AudioStreamPlayer
   self.DeathSound = self/"DeathSound" as AudioStreamPlayer
 
-  discard self.Player.connect("hit", self.callable "game_over")
-  discard self.Hud.connect("start_game", self.callable "new_game")
+  discard self.Player.connect("hit", self.callable"game_over")
+  discard self.Hud.connect("start_game", self.callable"new_game")
 
-  discard self.MobTimer.connect("timeout", self.callable "_on_mob_timer_timeout")
-  discard self.ScoreTimer.connect("timeout", self.callable "_on_score_timer_timeout")
-  discard self.StartTimer.connect("timeout", self.callable "_on_start_timer_timeout")
+  discard self.MobTimer.connect("timeout", self.callable"_on_mob_timer_timeout")
+  discard self.ScoreTimer.connect("timeout", self.callable"_on_score_timer_timeout")
+  discard self.StartTimer.connect("timeout", self.callable"_on_start_timer_timeout")
 
 
-proc on_ScoreTimer_timeout(self: Main) {.gdsync, name: "_on_score_timer_timeout".} =
+proc onScoreTimerTimeout(self: Main) {.gdsync, name: "_on_score_timer_timeout".} =
   inc self.score
-  self.Hud.update_score self.score
+  self.Hud.updateScore(self.score)
 
-proc on_StartTimer_timeout(self: Main) {.gdsync, name: "_on_start_timer_timeout".} =
+proc onStartTimerTimeout(self: Main) {.gdsync, name: "_on_start_timer_timeout".} =
   start self.MobTimer
   start self.ScoreTimer
 
-proc on_MobTimer_timeout(self: Main) {.gdsync, name: "_on_mob_timer_timeout".} =
+proc onMobTimerTimeout(self: Main) {.gdsync, name: "_on_mob_timer_timeout".} =
   let mob = self.mob_scene[].instantiate as Mob
   self.MobSpawnLocation.progressRatio = randfRange(0, 1)
 
@@ -78,6 +78,7 @@ proc on_MobTimer_timeout(self: Main) {.gdsync, name: "_on_mob_timer_timeout".} =
   mob.position = self.MobSpawnLocation.position
 
   direction += randfRange(-PI/4, PI/4)
+
   mob.rotation = direction
 
   var velocity = vector(randfRange(150, 250), 0f)
