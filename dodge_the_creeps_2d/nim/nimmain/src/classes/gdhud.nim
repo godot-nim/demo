@@ -1,5 +1,6 @@
 import gdext
 
+import gdext/classes/gdCanvasLayer
 import gdext/classes/gdSceneTree
 import gdext/classes/gdLabel
 import gdext/classes/gdButton

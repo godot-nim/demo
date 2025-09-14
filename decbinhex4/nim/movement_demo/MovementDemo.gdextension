@@ -1,7 +1,3 @@
-[icons]
-
-PolygonClass = "res://addons/icons/polygon_nim.png"
-
 [configuration]
 
 entry_symbol = "init_library"
@@ -10,11 +6,31 @@ reloadable = true
 
 [libraries]
 
-windows.debug = "res://./nim/movement_demo/lib/MovementDemo.windows.debug.dll"
-windows.release = "res://./nim/movement_demo/lib/MovementDemo.windows.release.dll"
-linux.debug = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.so"
-linux.release = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.so"
+windows.debug.x86_32 = "res://./nim/movement_demo/lib/MovementDemo.windows.debug.x86_32.dll"
+windows.release.x86_32 = "res://./nim/movement_demo/lib/MovementDemo.windows.release.x86_32.dll"
+windows.debug.x86_64 = "res://./nim/movement_demo/lib/MovementDemo.windows.debug.x86_64.dll"
+windows.release.x86_64 = "res://./nim/movement_demo/lib/MovementDemo.windows.release.x86_64.dll"
+windows.debug.arm64 = "res://./nim/movement_demo/lib/MovementDemo.windows.debug.arm64.dll"
+windows.release.arm64 = "res://./nim/movement_demo/lib/MovementDemo.windows.release.arm64.dll"
+linux.debug.x86_32 = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.x86_32.so"
+linux.release.x86_32 = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.x86_32.so"
+linux.debug.x86_64 = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.x86_64.so"
+linux.release.x86_64 = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.x86_64.so"
+linux.debug.arm32 = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.arm32.so"
+linux.release.arm32 = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.arm32.so"
+linux.debug.arm64 = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.arm64.so"
+linux.release.arm64 = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.arm64.so"
+linux.debug.rv64 = "res://./nim/movement_demo/lib/libMovementDemo.linux.debug.rv64.so"
+linux.release.rv64 = "res://./nim/movement_demo/lib/libMovementDemo.linux.release.rv64.so"
 macos.debug = "res://./nim/movement_demo/lib/libMovementDemo.macos.debug.dylib"
 macos.release = "res://./nim/movement_demo/lib/libMovementDemo.macos.release.dylib"
-web.debug = "res://./nim/movement_demo/lib/libMovementDemo.web.debug.wasm"
-web.release = "res://./nim/movement_demo/lib/libMovementDemo.web.release.wasm"
+web.debug.wasm32 = "res://./nim/movement_demo/lib/libMovementDemo.web.debug.wasm32.wasm"
+web.release.wasm32 = "res://./nim/movement_demo/lib/libMovementDemo.web.release.wasm32.wasm"
+android.debug.x86_64 = "res://./nim/movement_demo/lib/libMovementDemo.android.debug.x86_64.so"
+android.release.x86_64 = "res://./nim/movement_demo/lib/libMovementDemo.android.release.x86_64.so"
+android.debug.arm64 = "res://./nim/movement_demo/lib/libMovementDemo.android.debug.arm64.so"
+android.release.arm64 = "res://./nim/movement_demo/lib/libMovementDemo.android.release.arm64.so"
+
+[icons]
+
+PolygonClass = "res://addons/icons/polygon_nim.png"

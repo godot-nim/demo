@@ -8,7 +8,8 @@ import std/strutils
 --path: src
 
 let setting = BuildSettings(
-  name: capitalizeAscii "nimmain"
+  name: capitalizeAscii "nimmain",
+  updateMethod: inject,
 )
 
 configure(setting)

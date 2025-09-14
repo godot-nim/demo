@@ -1,7 +1,3 @@
-[icons]
-
-MainClass = "res://addons/icons/control_nim.svg"
-
 [configuration]
 
 entry_symbol = "init_library"
@@ -10,11 +6,31 @@ reloadable = true
 
 [libraries]
 
-windows.debug = "res://./nim/decbinhex4/lib/Decbinhex4.windows.debug.dll"
-windows.release = "res://./nim/decbinhex4/lib/Decbinhex4.windows.release.dll"
-linux.debug = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.so"
-linux.release = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.so"
+windows.debug.x86_32 = "res://./nim/decbinhex4/lib/Decbinhex4.windows.debug.x86_32.dll"
+windows.release.x86_32 = "res://./nim/decbinhex4/lib/Decbinhex4.windows.release.x86_32.dll"
+windows.debug.x86_64 = "res://./nim/decbinhex4/lib/Decbinhex4.windows.debug.x86_64.dll"
+windows.release.x86_64 = "res://./nim/decbinhex4/lib/Decbinhex4.windows.release.x86_64.dll"
+windows.debug.arm64 = "res://./nim/decbinhex4/lib/Decbinhex4.windows.debug.arm64.dll"
+windows.release.arm64 = "res://./nim/decbinhex4/lib/Decbinhex4.windows.release.arm64.dll"
+linux.debug.x86_32 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.x86_32.so"
+linux.release.x86_32 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.x86_32.so"
+linux.debug.x86_64 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.x86_64.so"
+linux.release.x86_64 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.x86_64.so"
+linux.debug.arm32 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.arm32.so"
+linux.release.arm32 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.arm32.so"
+linux.debug.arm64 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.arm64.so"
+linux.release.arm64 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.arm64.so"
+linux.debug.rv64 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.debug.rv64.so"
+linux.release.rv64 = "res://./nim/decbinhex4/lib/libDecbinhex4.linux.release.rv64.so"
 macos.debug = "res://./nim/decbinhex4/lib/libDecbinhex4.macos.debug.dylib"
 macos.release = "res://./nim/decbinhex4/lib/libDecbinhex4.macos.release.dylib"
-web.debug = "res://./nim/decbinhex4/lib/libDecbinhex4.web.debug.wasm"
-web.release = "res://./nim/decbinhex4/lib/libDecbinhex4.web.release.wasm"
+web.debug.wasm32 = "res://./nim/decbinhex4/lib/libDecbinhex4.web.debug.wasm32.wasm"
+web.release.wasm32 = "res://./nim/decbinhex4/lib/libDecbinhex4.web.release.wasm32.wasm"
+android.debug.x86_64 = "res://./nim/decbinhex4/lib/libDecbinhex4.android.debug.x86_64.so"
+android.release.x86_64 = "res://./nim/decbinhex4/lib/libDecbinhex4.android.release.x86_64.so"
+android.debug.arm64 = "res://./nim/decbinhex4/lib/libDecbinhex4.android.debug.arm64.so"
+android.release.arm64 = "res://./nim/decbinhex4/lib/libDecbinhex4.android.release.arm64.so"
+
+[icons]
+
+MainClass = "res://addons/icons/control_nim.svg"

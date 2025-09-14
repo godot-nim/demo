@@ -1,7 +1,9 @@
 import gdext
+import gdext/classes/gdRigidBody2D
 import gdext/classes/gdAnimatedSprite2D
 import gdext/classes/gdSpriteFrames
 import gdext/classes/gdSceneTree
+import gdext/classes/gdVisibleOnScreenNotifier2D
 
 type Mob* {.gdsync.} = ptr object of RigidBody2D
 
